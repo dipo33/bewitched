@@ -1,4 +1,4 @@
-package com.myname.mymodid;
+package com.dipo33.harvestcraftor;
 
 import java.io.File;
 
