@@ -1,8 +1,7 @@
-package com.dipo33.harvestcraftor.items;
+package com.dipo33.bewitched.items;
 
-import com.dipo33.harvestcraftor.HCOuterRealms;
-import com.dipo33.harvestcraftor.block.ORBlockRegistry;
-import com.pam.harvestcraft.HarvestCraft;
+import com.dipo33.bewitched.Bewitched;
+import com.dipo33.bewitched.block.BlockRegistry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.creativetab.CreativeTabs;
@@ -10,14 +9,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeeds;
 
-public class ORItemRegistry {
-    public static CreativeTabs tabCrops = HarvestCraft.tabHarvestCraft2;
-    public static CreativeTabs tabFood = HarvestCraft.tabHarvestCraft3;
+public class ItemRegistry {
 
     public static Item hemleafSeed;
 
     public static void initItems() {
-        hemleafSeed = new ItemSeeds(ORBlockRegistry.hemleafCrop, Blocks.farmland).setCreativeTab(tabCrops);
+        hemleafSeed = new ItemSeeds(BlockRegistry.hemleafCrop, Blocks.farmland).setCreativeTab(CreativeTabs.tabMaterials);
     }
 
     public static void registerItems() {
@@ -26,7 +23,7 @@ public class ORItemRegistry {
 
     private static void registerItem(Item item, String name) {
         item.setUnlocalizedName(name);
-        item.setTextureName(HCOuterRealms.MODID + ":" + name);
+        item.setTextureName(Bewitched.MODID + ":" + name);
         GameRegistry.registerItem(item, name);
     }
 }
