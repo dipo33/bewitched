@@ -16,8 +16,13 @@ public class ItemRegistry {
         new ItemSeeds(BlockRegistry.BELLADONNA_CROP.get(), Blocks.farmland).setCreativeTab(CreativeTabs.tabMaterials)
     );
 
+    public static final ObjectHolder<Item> BELLADONNA_FLOWER = new ObjectHolder<>(() ->
+        new Item().setCreativeTab(CreativeTabs.tabMaterials)
+    );
+
     public static void registerItems() {
         registerItem(BELLADONNA_SEED.get(), "belladonna_seed");
+        registerItem(BELLADONNA_FLOWER.get(), "belladonna_flower");
     }
 
     private static void registerItem(Item item, String name) {
