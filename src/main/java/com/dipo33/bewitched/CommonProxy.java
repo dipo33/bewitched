@@ -2,6 +2,7 @@ package com.dipo33.bewitched;
 
 import com.dipo33.bewitched.block.BlockRegistry;
 import com.dipo33.bewitched.items.ItemRegistry;
+import com.dipo33.bewitched.items.SeedDrops;
 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -25,6 +26,7 @@ public class CommonProxy {
 
     // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)
     public void init(FMLInitializationEvent event) {
+        SeedDrops.dropSeedsFromGrass();
     }
 
     // postInit "Handle interaction with other mods, complete your setup based on this." (Remove if not needed)
