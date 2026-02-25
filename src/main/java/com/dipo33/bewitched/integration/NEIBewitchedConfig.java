@@ -14,6 +14,11 @@ public class NEIBewitchedConfig implements IConfigureNEI {
     @Override
     public void loadConfig() {
         API.hideItem(new ItemStack(BlockRegistry.BELLADONNA_CROP.get()));
+        API.hideItem(new ItemStack(BlockRegistry.WOLFSBANE_CROP.get()));
+        API.hideItem(new ItemStack(BlockRegistry.WATER_ARTICHOKE_CROP.get()));
+        API.hideItem(new ItemStack(BlockRegistry.MANDRAKE_CROP.get()));
+        API.hideItem(new ItemStack(BlockRegistry.SNOW_WISP_CROP.get()));
+        API.hideItem(new ItemStack(BlockRegistry.GARLIC_CROP.get()));
     }
 
     @Override

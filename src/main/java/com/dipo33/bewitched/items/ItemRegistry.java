@@ -12,17 +12,56 @@ import net.minecraft.item.ItemSeeds;
 
 public class ItemRegistry {
 
+    // Seeds
     public static final ObjectHolder<Item> BELLADONNA_SEED = new ObjectHolder<>(() ->
         new ItemSeeds(BlockRegistry.BELLADONNA_CROP.get(), Blocks.farmland).setCreativeTab(CreativeTabs.tabMaterials)
     );
+    public static final ObjectHolder<Item> WOLFSBANE_SEED = new ObjectHolder<>(() ->
+        new ItemSeeds(BlockRegistry.WOLFSBANE_CROP.get(), Blocks.farmland).setCreativeTab(CreativeTabs.tabMaterials)
+    );
+    public static final ObjectHolder<Item> WATER_ARTICHOKE_SEED = new ObjectHolder<>(() ->
+        new ItemSeeds(BlockRegistry.WATER_ARTICHOKE_CROP.get(), Blocks.water).setCreativeTab(CreativeTabs.tabMaterials)
+    );
+    public static final ObjectHolder<Item> MANDRAKE_SEED = new ObjectHolder<>(() ->
+        new ItemSeeds(BlockRegistry.MANDRAKE_CROP.get(), Blocks.farmland).setCreativeTab(CreativeTabs.tabMaterials)
+    );
+    public static final ObjectHolder<Item> SNOW_WISP_SEED = new ObjectHolder<>(() ->
+        new ItemSeeds(BlockRegistry.SNOW_WISP_CROP.get(), Blocks.farmland).setCreativeTab(CreativeTabs.tabMaterials)
+    );
+    public static final ObjectHolder<Item> GARLIC = new ObjectHolder<>(() ->
+        new ItemSeeds(BlockRegistry.GARLIC_CROP.get(), Blocks.farmland).setCreativeTab(CreativeTabs.tabMaterials)
+    );
 
+    // Crops
     public static final ObjectHolder<Item> BELLADONNA_FLOWER = new ObjectHolder<>(() ->
+        new Item().setCreativeTab(CreativeTabs.tabMaterials)
+    );
+    public static final ObjectHolder<Item> WOLFSBANE_FLOWER = new ObjectHolder<>(() ->
+        new Item().setCreativeTab(CreativeTabs.tabMaterials)
+    );
+    public static final ObjectHolder<Item> WATER_ARTICHOKE_GLOBE = new ObjectHolder<>(() ->
+        new Item().setCreativeTab(CreativeTabs.tabMaterials)
+    );
+    public static final ObjectHolder<Item> MANDRAKE_ROOT = new ObjectHolder<>(() ->
+        new Item().setCreativeTab(CreativeTabs.tabMaterials)
+    );
+    public static final ObjectHolder<Item> ICY_NEEDLE = new ObjectHolder<>(() ->
         new Item().setCreativeTab(CreativeTabs.tabMaterials)
     );
 
     public static void registerItems() {
         registerItem(BELLADONNA_SEED.get(), "belladonna_seed");
+        registerItem(WOLFSBANE_SEED.get(), "wolfsbane_seed");
+        registerItem(WATER_ARTICHOKE_SEED.get(), "water_artichoke_seed");
+        registerItem(MANDRAKE_SEED.get(), "mandrake_seed");
+        registerItem(SNOW_WISP_SEED.get(), "snow_wisp_seed");
+        registerItem(GARLIC.get(), "garlic_seed");
+
         registerItem(BELLADONNA_FLOWER.get(), "belladonna_flower");
+        registerItem(WOLFSBANE_FLOWER.get(), "wolfsbane_flower");
+        registerItem(WATER_ARTICHOKE_GLOBE.get(), "water_artichoke_globe");
+        registerItem(MANDRAKE_ROOT.get(), "mandrake_root");
+        registerItem(ICY_NEEDLE.get(), "icy_needle");
     }
 
     private static void registerItem(Item item, String name) {
