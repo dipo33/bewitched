@@ -18,7 +18,7 @@ public class WaterItemSeeds extends ItemSeeds {
 
     @Override
     public boolean onItemUse(final ItemStack item, final EntityPlayer player, final World world, final int x, final int y, final int z, final int side,
-                             final float hitX, final float hitY, final float hit) {
+                             final float hitX, final float hitY, final float hitZ) {
         return false;
     }
 
