@@ -3,7 +3,7 @@
 	"modList": [{
 		"modid": "${modId}",
 		"name": "${modName}",
-		"description": " Bewitched is a ground-up, open-source replacement for Witchery, designed specifically for GregTech: New Horizons. It restores and reimagines ritual magic, alchemy, and occult progression with full GTNH integration and balance in mind.",
+		"description": "Bewitched is a ground-up, open-source replacement for Witchery, designed specifically for GregTech: New Horizons. It restores and reimagines ritual magic, alchemy, and occult progression with full GTNH integration and balance in mind.",
 		"version": "${modVersion}",
 		"mcversion": "${minecraftVersion}",
 		"url": "https://github.com/dipo33/bewitched",
