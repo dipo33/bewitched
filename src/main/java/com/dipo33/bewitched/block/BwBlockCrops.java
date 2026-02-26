@@ -120,14 +120,16 @@ public class BwBlockCrops extends BlockCrops {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float subX, float subY, float subZ) {
-        if (!Config.rightClickMatureCropHarvest || world.isRemote) {
+        if (!Config.rightClickMatureCropHarvest) {
             return false;
         }
 
         int meta = world.getBlockMetadata(x, y, z);
         if (meta == 7) {
-            this.dropBlockAsItem(world, x, y, z, meta, 0);
-            world.setBlock(x, y, z, this, 0, 2);
+            if (!world.isRemote) {
+                this.dropBlockAsItem(world, x, y, z, meta, 0);
+                world.setBlock(x, y, z, this, 0, 2);
+            }
             return true;
         }
 
