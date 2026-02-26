@@ -1,8 +1,8 @@
 package com.dipo33.bewitched;
 
-import org.junit.Test;
-
 import static org.junit.Assert.*;
+
+import org.junit.Test;
 
 /**
  * Integration tests for the Bewitched mod main class.
@@ -62,14 +62,13 @@ public class BewitchedModTest {
     public void testModHasEventHandlers() {
         // Verify event handler methods exist
         try {
-            assertNotNull(Bewitched.class.getMethod("preInit",
-                cpw.mods.fml.common.event.FMLPreInitializationEvent.class));
-            assertNotNull(Bewitched.class.getMethod("init",
-                cpw.mods.fml.common.event.FMLInitializationEvent.class));
-            assertNotNull(Bewitched.class.getMethod("postInit",
-                cpw.mods.fml.common.event.FMLPostInitializationEvent.class));
-            assertNotNull(Bewitched.class.getMethod("serverStarting",
-                cpw.mods.fml.common.event.FMLServerStartingEvent.class));
+            assertNotNull(
+                Bewitched.class.getMethod("preInit", cpw.mods.fml.common.event.FMLPreInitializationEvent.class));
+            assertNotNull(Bewitched.class.getMethod("init", cpw.mods.fml.common.event.FMLInitializationEvent.class));
+            assertNotNull(
+                Bewitched.class.getMethod("postInit", cpw.mods.fml.common.event.FMLPostInitializationEvent.class));
+            assertNotNull(
+                Bewitched.class.getMethod("serverStarting", cpw.mods.fml.common.event.FMLServerStartingEvent.class));
         } catch (NoSuchMethodException e) {
             fail("Expected event handler method not found: " + e.getMessage());
         }
@@ -82,28 +81,42 @@ public class BewitchedModTest {
 
     @Test
     public void testModConstantsAreFinal() throws NoSuchFieldException {
-        assertTrue(java.lang.reflect.Modifier.isFinal(
-            Bewitched.class.getField("MODID").getModifiers()));
-        assertTrue(java.lang.reflect.Modifier.isFinal(
-            Bewitched.class.getField("MOD_NAME").getModifiers()));
-        assertTrue(java.lang.reflect.Modifier.isFinal(
-            Bewitched.class.getField("LOG").getModifiers()));
+        assertTrue(
+            java.lang.reflect.Modifier.isFinal(
+                Bewitched.class.getField("MODID")
+                    .getModifiers()));
+        assertTrue(
+            java.lang.reflect.Modifier.isFinal(
+                Bewitched.class.getField("MOD_NAME")
+                    .getModifiers()));
+        assertTrue(
+            java.lang.reflect.Modifier.isFinal(
+                Bewitched.class.getField("LOG")
+                    .getModifiers()));
     }
 
     @Test
     public void testModConstantsAreStatic() throws NoSuchFieldException {
-        assertTrue(java.lang.reflect.Modifier.isStatic(
-            Bewitched.class.getField("MODID").getModifiers()));
-        assertTrue(java.lang.reflect.Modifier.isStatic(
-            Bewitched.class.getField("MOD_NAME").getModifiers()));
-        assertTrue(java.lang.reflect.Modifier.isStatic(
-            Bewitched.class.getField("LOG").getModifiers()));
+        assertTrue(
+            java.lang.reflect.Modifier.isStatic(
+                Bewitched.class.getField("MODID")
+                    .getModifiers()));
+        assertTrue(
+            java.lang.reflect.Modifier.isStatic(
+                Bewitched.class.getField("MOD_NAME")
+                    .getModifiers()));
+        assertTrue(
+            java.lang.reflect.Modifier.isStatic(
+                Bewitched.class.getField("LOG")
+                    .getModifiers()));
     }
 
     @Test
     public void testProxyIsStatic() throws NoSuchFieldException {
-        assertTrue(java.lang.reflect.Modifier.isStatic(
-            Bewitched.class.getField("proxy").getModifiers()));
+        assertTrue(
+            java.lang.reflect.Modifier.isStatic(
+                Bewitched.class.getField("proxy")
+                    .getModifiers()));
     }
 
     @Test
@@ -113,8 +126,7 @@ public class BewitchedModTest {
 
     @Test
     public void testModAnnotationValues() {
-        cpw.mods.fml.common.Mod modAnnotation =
-            Bewitched.class.getAnnotation(cpw.mods.fml.common.Mod.class);
+        cpw.mods.fml.common.Mod modAnnotation = Bewitched.class.getAnnotation(cpw.mods.fml.common.Mod.class);
 
         assertNotNull(modAnnotation);
         assertEquals("bewitched", modAnnotation.modid());
@@ -145,14 +157,13 @@ public class BewitchedModTest {
     public void testCommonProxyHasEventHandlers() {
         // Verify CommonProxy has the expected methods
         try {
-            assertNotNull(CommonProxy.class.getMethod("preInit",
-                cpw.mods.fml.common.event.FMLPreInitializationEvent.class));
-            assertNotNull(CommonProxy.class.getMethod("init",
-                cpw.mods.fml.common.event.FMLInitializationEvent.class));
-            assertNotNull(CommonProxy.class.getMethod("postInit",
-                cpw.mods.fml.common.event.FMLPostInitializationEvent.class));
-            assertNotNull(CommonProxy.class.getMethod("serverStarting",
-                cpw.mods.fml.common.event.FMLServerStartingEvent.class));
+            assertNotNull(
+                CommonProxy.class.getMethod("preInit", cpw.mods.fml.common.event.FMLPreInitializationEvent.class));
+            assertNotNull(CommonProxy.class.getMethod("init", cpw.mods.fml.common.event.FMLInitializationEvent.class));
+            assertNotNull(
+                CommonProxy.class.getMethod("postInit", cpw.mods.fml.common.event.FMLPostInitializationEvent.class));
+            assertNotNull(
+                CommonProxy.class.getMethod("serverStarting", cpw.mods.fml.common.event.FMLServerStartingEvent.class));
         } catch (NoSuchMethodException e) {
             fail("Expected proxy method not found: " + e.getMessage());
         }
@@ -239,7 +250,10 @@ public class BewitchedModTest {
     @Test
     public void testPackageStructure() {
         // Verify the package structure
-        assertEquals("com.dipo33.bewitched", Bewitched.class.getPackage().getName());
+        assertEquals(
+            "com.dipo33.bewitched",
+            Bewitched.class.getPackage()
+                .getName());
     }
 
     @Test
@@ -247,6 +261,9 @@ public class BewitchedModTest {
         // The mod group in gradle.properties should match the package
         // modGroup = com.dipo33.bewitched
         String expectedPackage = "com.dipo33.bewitched";
-        assertEquals(expectedPackage, Bewitched.class.getPackage().getName());
+        assertEquals(
+            expectedPackage,
+            Bewitched.class.getPackage()
+                .getName());
     }
 }

@@ -1,10 +1,12 @@
 package com.dipo33.bewitched.block;
 
-import com.dipo33.bewitched.data.ObjectHolder;
+import static org.junit.Assert.*;
+
 import net.minecraft.block.Block;
+
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import com.dipo33.bewitched.data.ObjectHolder;
 
 /**
  * Test suite for BlockRegistry class.
@@ -85,14 +87,9 @@ public class BlockRegistryTest {
     @Test
     public void testRegistryHasSixCrops() {
         // Count the number of crop holders by checking they're all distinct
-        ObjectHolder<?>[] holders = {
-            BlockRegistry.BELLADONNA_CROP,
-            BlockRegistry.WOLFSBANE_CROP,
-            BlockRegistry.WATER_ARTICHOKE_CROP,
-            BlockRegistry.MANDRAKE_CROP,
-            BlockRegistry.SNOW_WISP_CROP,
-            BlockRegistry.GARLIC_CROP
-        };
+        ObjectHolder<?>[] holders = { BlockRegistry.BELLADONNA_CROP, BlockRegistry.WOLFSBANE_CROP,
+            BlockRegistry.WATER_ARTICHOKE_CROP, BlockRegistry.MANDRAKE_CROP, BlockRegistry.SNOW_WISP_CROP,
+            BlockRegistry.GARLIC_CROP };
 
         assertEquals(6, holders.length);
 
@@ -158,14 +155,7 @@ public class BlockRegistryTest {
     public void testAllCropNamesUnique() {
         // This test documents that each crop should have a unique name
         // Names: belladonna, wolfsbane, water_artichoke, mandrake, snow_wisp, garlic
-        String[] expectedNames = {
-            "belladonna",
-            "wolfsbane",
-            "water_artichoke",
-            "mandrake",
-            "snow_wisp",
-            "garlic"
-        };
+        String[] expectedNames = { "belladonna", "wolfsbane", "water_artichoke", "mandrake", "snow_wisp", "garlic" };
 
         // Verify we have 6 unique names
         assertEquals(6, expectedNames.length);

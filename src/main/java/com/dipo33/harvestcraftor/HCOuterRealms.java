@@ -10,13 +10,19 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
-@Mod(modid = HCOuterRealms.MODID, version = Tags.VERSION, name = "HarvestCraft: Outer Realms", acceptedMinecraftVersions = "[1.7.10]")
+@Mod(
+    modid = HCOuterRealms.MODID,
+    version = Tags.VERSION,
+    name = "HarvestCraft: Outer Realms",
+    acceptedMinecraftVersions = "[1.7.10]")
 public class HCOuterRealms {
 
     public static final String MODID = "harvestcraftor";
     public static final Logger LOG = LogManager.getLogger(MODID);
 
-    @SidedProxy(clientSide = "com.dipo33.harvestcraftor.ClientProxy", serverSide = "com.dipo33.harvestcraftor.CommonProxy")
+    @SidedProxy(
+        clientSide = "com.dipo33.harvestcraftor.ClientProxy",
+        serverSide = "com.dipo33.harvestcraftor.CommonProxy")
     public static CommonProxy proxy;
 
     @Mod.EventHandler

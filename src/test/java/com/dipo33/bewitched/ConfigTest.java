@@ -1,15 +1,16 @@
 package com.dipo33.bewitched;
 
-import net.minecraftforge.common.config.Configuration;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.Rule;
-import org.junit.rules.TemporaryFolder;
+import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.IOException;
 
-import static org.junit.Assert.*;
+import net.minecraftforge.common.config.Configuration;
+
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
 /**
  * Comprehensive test suite for Config class.
@@ -155,8 +156,7 @@ public class ConfigTest {
     @Test
     public void testBooleanConfigValue() {
         // Test that the config value is indeed a boolean
-        assertTrue(Config.rightClickMatureCropHarvest == true ||
-                   Config.rightClickMatureCropHarvest == false);
+        assertTrue(Config.rightClickMatureCropHarvest == true || Config.rightClickMatureCropHarvest == false);
     }
 
     @Test
@@ -212,8 +212,7 @@ public class ConfigTest {
             "rightClickMatureCropHarvest",
             Configuration.CATEGORY_GENERAL,
             true,
-            "Should right click on mature crop harvest the crop?"
-        );
+            "Should right click on mature crop harvest the crop?");
 
         // The value should have been saved and loaded
         // (This might be false or true depending on when Forge saves)

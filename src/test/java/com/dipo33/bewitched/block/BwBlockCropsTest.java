@@ -1,12 +1,14 @@
 package com.dipo33.bewitched.block;
 
-import com.dipo33.bewitched.data.ObjectHolder;
+import static org.junit.Assert.*;
+
 import net.minecraft.item.Item;
 import net.minecraftforge.common.EnumPlantType;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import com.dipo33.bewitched.data.ObjectHolder;
 
 /**
  * Comprehensive test suite for BwBlockCrops validation logic.
@@ -183,8 +185,7 @@ public class BwBlockCropsTest {
 
     @Test
     public void testBuilderPatternChaining() {
-        BwBlockCrops crop = new BwBlockCrops(mockSeed, mockCrop)
-            .setStages(5)
+        BwBlockCrops crop = new BwBlockCrops(mockSeed, mockCrop).setStages(5)
             .setPlantType(EnumPlantType.Water)
             .addAdditionalDrops(mockAdditionalItem, 0.1);
 
@@ -194,14 +195,11 @@ public class BwBlockCropsTest {
     @Test
     public void testBuilderPatternPartial() {
         // Test that not all methods need to be called
-        BwBlockCrops crop1 = new BwBlockCrops(mockSeed, mockCrop)
-            .setStages(5);
+        BwBlockCrops crop1 = new BwBlockCrops(mockSeed, mockCrop).setStages(5);
 
-        BwBlockCrops crop2 = new BwBlockCrops(mockSeed, mockCrop)
-            .setPlantType(EnumPlantType.Water);
+        BwBlockCrops crop2 = new BwBlockCrops(mockSeed, mockCrop).setPlantType(EnumPlantType.Water);
 
-        BwBlockCrops crop3 = new BwBlockCrops(mockSeed, mockCrop)
-            .addAdditionalDrops(mockAdditionalItem, 0.5);
+        BwBlockCrops crop3 = new BwBlockCrops(mockSeed, mockCrop).addAdditionalDrops(mockAdditionalItem, 0.5);
 
         assertNotNull(crop1);
         assertNotNull(crop2);
@@ -214,8 +212,7 @@ public class BwBlockCropsTest {
         ObjectHolder<Item> seed = new ObjectHolder<>(() -> null);
         ObjectHolder<Item> flower = new ObjectHolder<>(() -> null);
 
-        BwBlockCrops crop = new BwBlockCrops(seed, flower)
-            .setStages(5);
+        BwBlockCrops crop = new BwBlockCrops(seed, flower).setStages(5);
 
         assertNotNull(crop);
     }
@@ -226,8 +223,7 @@ public class BwBlockCropsTest {
         ObjectHolder<Item> seed = new ObjectHolder<>(() -> null);
         ObjectHolder<Item> flower = new ObjectHolder<>(() -> null);
 
-        BwBlockCrops crop = new BwBlockCrops(seed, flower)
-            .setStages(8);
+        BwBlockCrops crop = new BwBlockCrops(seed, flower).setStages(8);
 
         assertNotNull(crop);
     }
@@ -238,8 +234,7 @@ public class BwBlockCropsTest {
         ObjectHolder<Item> seed = new ObjectHolder<>(() -> null);
         ObjectHolder<Item> globe = new ObjectHolder<>(() -> null);
 
-        BwBlockCrops crop = new BwBlockCrops(seed, globe)
-            .setStages(5)
+        BwBlockCrops crop = new BwBlockCrops(seed, globe).setStages(5)
             .setPlantType(EnumPlantType.Water);
 
         assertNotNull(crop);
@@ -252,8 +247,7 @@ public class BwBlockCropsTest {
         ObjectHolder<Item> snowball = new ObjectHolder<>(() -> null);
         ObjectHolder<Item> icyNeedle = new ObjectHolder<>(() -> null);
 
-        BwBlockCrops crop = new BwBlockCrops(seed, snowball)
-            .setStages(5)
+        BwBlockCrops crop = new BwBlockCrops(seed, snowball).setStages(5)
             .addAdditionalDrops(icyNeedle, 0.1D);
 
         assertNotNull(crop);
@@ -264,8 +258,7 @@ public class BwBlockCropsTest {
         // Simulate the GARLIC_CROP configuration from BlockRegistry
         ObjectHolder<Item> garlic = new ObjectHolder<>(() -> null);
 
-        BwBlockCrops crop = new BwBlockCrops(garlic, garlic)
-            .setStages(6);
+        BwBlockCrops crop = new BwBlockCrops(garlic, garlic).setStages(6);
 
         assertNotNull(crop);
     }
@@ -323,8 +316,7 @@ public class BwBlockCropsTest {
 
     @Test
     public void testComplexChaining() {
-        BwBlockCrops crop = new BwBlockCrops(mockSeed, mockCrop)
-            .setStages(5)
+        BwBlockCrops crop = new BwBlockCrops(mockSeed, mockCrop).setStages(5)
             .addAdditionalDrops(new ObjectHolder<>(() -> null), 0.1)
             .setPlantType(EnumPlantType.Water)
             .addAdditionalDrops(new ObjectHolder<>(() -> null), 0.2)
@@ -354,32 +346,48 @@ public class BwBlockCropsTest {
             crop.setStages(0);
             fail("Expected IllegalArgumentException");
         } catch (IllegalArgumentException e) {
-            assertTrue(e.getMessage().contains("1 and 8"));
-            assertTrue(e.getMessage().contains("0"));
+            assertTrue(
+                e.getMessage()
+                    .contains("1 and 8"));
+            assertTrue(
+                e.getMessage()
+                    .contains("0"));
         }
 
         try {
             crop.setStages(10);
             fail("Expected IllegalArgumentException");
         } catch (IllegalArgumentException e) {
-            assertTrue(e.getMessage().contains("1 and 8"));
-            assertTrue(e.getMessage().contains("10"));
+            assertTrue(
+                e.getMessage()
+                    .contains("1 and 8"));
+            assertTrue(
+                e.getMessage()
+                    .contains("10"));
         }
 
         try {
             crop.addAdditionalDrops(mockAdditionalItem, -0.5);
             fail("Expected IllegalArgumentException");
         } catch (IllegalArgumentException e) {
-            assertTrue(e.getMessage().contains("0.0 and 1.0"));
-            assertTrue(e.getMessage().contains("-0.5"));
+            assertTrue(
+                e.getMessage()
+                    .contains("0.0 and 1.0"));
+            assertTrue(
+                e.getMessage()
+                    .contains("-0.5"));
         }
 
         try {
             crop.addAdditionalDrops(mockAdditionalItem, 1.5);
             fail("Expected IllegalArgumentException");
         } catch (IllegalArgumentException e) {
-            assertTrue(e.getMessage().contains("0.0 and 1.0"));
-            assertTrue(e.getMessage().contains("1.5"));
+            assertTrue(
+                e.getMessage()
+                    .contains("0.0 and 1.0"));
+            assertTrue(
+                e.getMessage()
+                    .contains("1.5"));
         }
     }
 
@@ -389,14 +397,18 @@ public class BwBlockCropsTest {
             new BwBlockCrops(null, mockCrop);
             fail("Expected NullPointerException");
         } catch (NullPointerException e) {
-            assertTrue(e.getMessage().contains("seed"));
+            assertTrue(
+                e.getMessage()
+                    .contains("seed"));
         }
 
         try {
             new BwBlockCrops(mockSeed, null);
             fail("Expected NullPointerException");
         } catch (NullPointerException e) {
-            assertTrue(e.getMessage().contains("crop"));
+            assertTrue(
+                e.getMessage()
+                    .contains("crop"));
         }
 
         BwBlockCrops crop = new BwBlockCrops(mockSeed, mockCrop);
@@ -405,14 +417,18 @@ public class BwBlockCropsTest {
             crop.setPlantType(null);
             fail("Expected NullPointerException");
         } catch (NullPointerException e) {
-            assertTrue(e.getMessage().contains("plantType"));
+            assertTrue(
+                e.getMessage()
+                    .contains("plantType"));
         }
 
         try {
             crop.addAdditionalDrops(null, 0.5);
             fail("Expected NullPointerException");
         } catch (NullPointerException e) {
-            assertTrue(e.getMessage().contains("item"));
+            assertTrue(
+                e.getMessage()
+                    .contains("item"));
         }
     }
 }

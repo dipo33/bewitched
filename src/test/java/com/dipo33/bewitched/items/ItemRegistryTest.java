@@ -1,10 +1,12 @@
 package com.dipo33.bewitched.items;
 
-import com.dipo33.bewitched.data.ObjectHolder;
+import static org.junit.Assert.*;
+
 import net.minecraft.item.Item;
+
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import com.dipo33.bewitched.data.ObjectHolder;
 
 /**
  * Test suite for ItemRegistry class.
@@ -120,14 +122,9 @@ public class ItemRegistryTest {
 
     @Test
     public void testRegistryHasSixSeeds() {
-        ObjectHolder<?>[] seedHolders = {
-            ItemRegistry.BELLADONNA_SEED,
-            ItemRegistry.WOLFSBANE_SEED,
-            ItemRegistry.WATER_ARTICHOKE_SEED,
-            ItemRegistry.MANDRAKE_SEED,
-            ItemRegistry.SNOW_WISP_SEED,
-            ItemRegistry.GARLIC
-        };
+        ObjectHolder<?>[] seedHolders = { ItemRegistry.BELLADONNA_SEED, ItemRegistry.WOLFSBANE_SEED,
+            ItemRegistry.WATER_ARTICHOKE_SEED, ItemRegistry.MANDRAKE_SEED, ItemRegistry.SNOW_WISP_SEED,
+            ItemRegistry.GARLIC };
 
         assertEquals(6, seedHolders.length);
 
@@ -141,13 +138,8 @@ public class ItemRegistryTest {
 
     @Test
     public void testRegistryHasFiveCrops() {
-        ObjectHolder<?>[] cropHolders = {
-            ItemRegistry.BELLADONNA_FLOWER,
-            ItemRegistry.WOLFSBANE_FLOWER,
-            ItemRegistry.WATER_ARTICHOKE_GLOBE,
-            ItemRegistry.MANDRAKE_ROOT,
-            ItemRegistry.ICY_NEEDLE
-        };
+        ObjectHolder<?>[] cropHolders = { ItemRegistry.BELLADONNA_FLOWER, ItemRegistry.WOLFSBANE_FLOWER,
+            ItemRegistry.WATER_ARTICHOKE_GLOBE, ItemRegistry.MANDRAKE_ROOT, ItemRegistry.ICY_NEEDLE };
 
         assertEquals(5, cropHolders.length);
 
@@ -162,33 +154,18 @@ public class ItemRegistryTest {
     @Test
     public void testTotalItemCount() {
         // 6 seeds + 5 crops = 11 total items
-        ObjectHolder<?>[] allHolders = {
-            ItemRegistry.BELLADONNA_SEED,
-            ItemRegistry.WOLFSBANE_SEED,
-            ItemRegistry.WATER_ARTICHOKE_SEED,
-            ItemRegistry.MANDRAKE_SEED,
-            ItemRegistry.SNOW_WISP_SEED,
-            ItemRegistry.GARLIC,
-            ItemRegistry.BELLADONNA_FLOWER,
-            ItemRegistry.WOLFSBANE_FLOWER,
-            ItemRegistry.WATER_ARTICHOKE_GLOBE,
-            ItemRegistry.MANDRAKE_ROOT,
-            ItemRegistry.ICY_NEEDLE
-        };
+        ObjectHolder<?>[] allHolders = { ItemRegistry.BELLADONNA_SEED, ItemRegistry.WOLFSBANE_SEED,
+            ItemRegistry.WATER_ARTICHOKE_SEED, ItemRegistry.MANDRAKE_SEED, ItemRegistry.SNOW_WISP_SEED,
+            ItemRegistry.GARLIC, ItemRegistry.BELLADONNA_FLOWER, ItemRegistry.WOLFSBANE_FLOWER,
+            ItemRegistry.WATER_ARTICHOKE_GLOBE, ItemRegistry.MANDRAKE_ROOT, ItemRegistry.ICY_NEEDLE };
 
         assertEquals(11, allHolders.length);
     }
 
     @Test
     public void testSeedNamesUnique() {
-        String[] seedNames = {
-            "belladonna_seed",
-            "wolfsbane_seed",
-            "water_artichoke_seed",
-            "mandrake_seed",
-            "snow_wisp_seed",
-            "garlic_seed"
-        };
+        String[] seedNames = { "belladonna_seed", "wolfsbane_seed", "water_artichoke_seed", "mandrake_seed",
+            "snow_wisp_seed", "garlic_seed" };
 
         assertEquals(6, seedNames.length);
 
@@ -202,13 +179,8 @@ public class ItemRegistryTest {
 
     @Test
     public void testCropNamesUnique() {
-        String[] cropNames = {
-            "belladonna_flower",
-            "wolfsbane_flower",
-            "water_artichoke_globe",
-            "mandrake_root",
-            "icy_needle"
-        };
+        String[] cropNames = { "belladonna_flower", "wolfsbane_flower", "water_artichoke_globe", "mandrake_root",
+            "icy_needle" };
 
         assertEquals(5, cropNames.length);
 
@@ -288,24 +260,14 @@ public class ItemRegistryTest {
     @Test
     public void testAllItemsHaveDistinctHolders() {
         // Verify all 11 items have distinct ObjectHolder instances
-        ObjectHolder<?>[] allHolders = {
-            ItemRegistry.BELLADONNA_SEED,
-            ItemRegistry.WOLFSBANE_SEED,
-            ItemRegistry.WATER_ARTICHOKE_SEED,
-            ItemRegistry.MANDRAKE_SEED,
-            ItemRegistry.SNOW_WISP_SEED,
-            ItemRegistry.GARLIC,
-            ItemRegistry.BELLADONNA_FLOWER,
-            ItemRegistry.WOLFSBANE_FLOWER,
-            ItemRegistry.WATER_ARTICHOKE_GLOBE,
-            ItemRegistry.MANDRAKE_ROOT,
-            ItemRegistry.ICY_NEEDLE
-        };
+        ObjectHolder<?>[] allHolders = { ItemRegistry.BELLADONNA_SEED, ItemRegistry.WOLFSBANE_SEED,
+            ItemRegistry.WATER_ARTICHOKE_SEED, ItemRegistry.MANDRAKE_SEED, ItemRegistry.SNOW_WISP_SEED,
+            ItemRegistry.GARLIC, ItemRegistry.BELLADONNA_FLOWER, ItemRegistry.WOLFSBANE_FLOWER,
+            ItemRegistry.WATER_ARTICHOKE_GLOBE, ItemRegistry.MANDRAKE_ROOT, ItemRegistry.ICY_NEEDLE };
 
         for (int i = 0; i < allHolders.length; i++) {
             for (int j = i + 1; j < allHolders.length; j++) {
-                assertNotSame("All holders should be distinct instances",
-                    allHolders[i], allHolders[j]);
+                assertNotSame("All holders should be distinct instances", allHolders[i], allHolders[j]);
             }
         }
     }

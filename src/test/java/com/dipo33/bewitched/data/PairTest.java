@@ -1,7 +1,8 @@
 package com.dipo33.bewitched.data;
 
-import org.junit.Test;
 import static org.junit.Assert.*;
+
+import org.junit.Test;
 
 /**
  * Comprehensive test suite for Pair record class.
@@ -128,13 +129,18 @@ public class PairTest {
     public void testPairOfPairs() {
         Pair<String, Integer> innerPair1 = new Pair<>("a", 1);
         Pair<String, Integer> innerPair2 = new Pair<>("b", 2);
-        Pair<Pair<String, Integer>, Pair<String, Integer>> outerPair =
-            new Pair<>(innerPair1, innerPair2);
+        Pair<Pair<String, Integer>, Pair<String, Integer>> outerPair = new Pair<>(innerPair1, innerPair2);
 
         assertEquals(innerPair1, outerPair.first());
         assertEquals(innerPair2, outerPair.second());
-        assertEquals("a", outerPair.first().first());
-        assertEquals(Integer.valueOf(2), outerPair.second().second());
+        assertEquals(
+            "a",
+            outerPair.first()
+                .first());
+        assertEquals(
+            Integer.valueOf(2),
+            outerPair.second()
+                .second());
     }
 
     @Test
@@ -194,8 +200,7 @@ public class PairTest {
     @Test
     public void testDoubleAsType() {
         // This is used in BwBlockCrops for drop chances
-        Pair<ObjectHolder<String>, Double> dropPair =
-            new Pair<>(new ObjectHolder<>(() -> "item"), 0.5);
+        Pair<ObjectHolder<String>, Double> dropPair = new Pair<>(new ObjectHolder<>(() -> "item"), 0.5);
 
         assertEquals(Double.valueOf(0.5), dropPair.second());
     }
@@ -238,6 +243,9 @@ public class PairTest {
 
         assertEquals(itemHolder, additionalDrop.first());
         assertEquals(Double.valueOf(0.1), additionalDrop.second());
-        assertEquals("icy_needle", additionalDrop.first().get());
+        assertEquals(
+            "icy_needle",
+            additionalDrop.first()
+                .get());
     }
 }

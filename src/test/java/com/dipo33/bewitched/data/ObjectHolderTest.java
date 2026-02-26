@@ -1,11 +1,12 @@
 package com.dipo33.bewitched.data;
 
-import org.junit.Test;
-import org.junit.Before;
 import static org.junit.Assert.*;
 
-import java.util.function.Supplier;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Supplier;
+
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Comprehensive test suite for ObjectHolder class.
@@ -151,7 +152,8 @@ public class ObjectHolderTest {
             try {
                 Thread.sleep(10); // Simulate slow initialization
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+                Thread.currentThread()
+                    .interrupt();
             }
             return "thread-" + count;
         });
@@ -209,9 +211,7 @@ public class ObjectHolderTest {
 
     @Test
     public void testExceptionInSupplier() {
-        ObjectHolder<String> failingHolder = new ObjectHolder<>(() -> {
-            throw new RuntimeException("Init failed");
-        });
+        ObjectHolder<String> failingHolder = new ObjectHolder<>(() -> { throw new RuntimeException("Init failed"); });
 
         try {
             failingHolder.get();
