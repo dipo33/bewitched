@@ -8,6 +8,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -62,7 +63,8 @@ public class BwBlockCrops extends BlockCrops {
     }
 
     public BwBlockCrops addAdditionalDrops(ObjectHolder<Item> item, double chance) {
-        if (chance < 0.0D || chance > 1.0D) {
+        Objects.requireNonNull(item);
+        if (Double.isNaN(chance) || chance < 0.0D || chance > 1.0D) {
             throw new IllegalArgumentException("Chance must be between 0.0 and 1.0, got: " + chance);
         }
         this.additionalDrops.add(new Pair<>(item, chance));
