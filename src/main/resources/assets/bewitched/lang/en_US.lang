@@ -1,0 +1,19 @@
+item.belladonna_seed.name=Belladonna Seed
+item.wolfsbane_seed.name=Wolfsbane Seed
+item.water_artichoke_seed.name=Water Artichoke Seed
+item.mandrake_seed.name=Mandrake Seed
+item.snow_wisp_seed.name=Snow Wisp Seed
+item.garlic_seed.name=Garlic
+
+item.belladonna_flower.name=Belladonna Flower
+item.wolfsbane_flower.name=Wolfsbane Flower
+item.water_artichoke_globe.name=Water Artichoke Globe
+item.mandrake_root.name=Mandrake Root
+item.icy_needle.name=Icy Needle
+
+tile.belladonna.name=Belladonna Crop
+tile.wolfsbane.name=Wolfsbane Crop
+tile.water_artichoke.name=Water Artichoke Crop
+tile.mandrake.name=Mandrake Crop
+tile.snow_wisp.name=Snow Wisp Crop
+tile.garlic.name=Garlic Crop

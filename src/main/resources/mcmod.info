@@ -3,10 +3,10 @@
 	"modList": [{
 		"modid": "${modId}",
 		"name": "${modName}",
-		"description": "HarvestCraft: Outer Realms is a Pam’s HarvestCraft addon that expands agriculture beyond the Overworld, starting with fully self-sustaining Nether farming. It introduces dimension-specific gardens, crops, trees, food chains, and renewable resources designed.",
+		"description": "Bewitched is a ground-up, open-source replacement for Witchery, designed specifically for GregTech: New Horizons. It restores and reimagines ritual magic, alchemy, and occult progression with full GTNH integration and balance in mind.",
 		"version": "${modVersion}",
 		"mcversion": "${minecraftVersion}",
-		"url": "https://github.com/dipo33/harvestcraft-outer-realms",
+		"url": "https://github.com/dipo33/bewitched",
 		"updateUrl": "",
 		"authorList": ["dipo33", "dxzfvzs"],
 		"credits": "",
