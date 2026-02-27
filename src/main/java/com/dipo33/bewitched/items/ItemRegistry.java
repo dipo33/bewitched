@@ -49,6 +49,9 @@ public class ItemRegistry {
         new Item().setCreativeTab(CreativeTabs.tabMaterials)
     );
 
+    /**
+     * Registers every item declared in this class with the game's item registry.
+     */
     public static void registerItems() {
         registerItem(BELLADONNA_SEED.get(), "belladonna_seed");
         registerItem(WOLFSBANE_SEED.get(), "wolfsbane_seed");
@@ -64,6 +67,14 @@ public class ItemRegistry {
         registerItem(ICY_NEEDLE.get(), "icy_needle");
     }
 
+    /**
+     * Configure an item's unlocalized name and texture name then register it with the game registry.
+     *
+     * @param item
+     *     the Item to configure and register
+     * @param name
+     *     the registry name used for the item's texture, unlocalized name, and registration
+     */
     private static void registerItem(Item item, String name) {
         item.setUnlocalizedName(name);
         item.setTextureName(Bewitched.MODID + ":" + name);

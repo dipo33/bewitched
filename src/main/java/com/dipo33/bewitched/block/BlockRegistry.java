@@ -37,6 +37,9 @@ public class BlockRegistry {
             .setStages(6)
     );
 
+    /**
+     * Register the mod's crop blocks with the game registry.
+     */
     public static void registerBlocks() {
         registerBlock(BELLADONNA_CROP.get(), "belladonna");
         registerBlock(WOLFSBANE_CROP.get(), "wolfsbane");
@@ -46,6 +49,14 @@ public class BlockRegistry {
         registerBlock(GARLIC_CROP.get(), "garlic");
     }
 
+    /**
+     * Configure a block's texture and unlocalized name, then register it with the GameRegistry.
+     *
+     * @param block
+     *     the block to configure and register
+     * @param name
+     *     the registry name used for the block's texture, unlocalized name, and registration
+     */
     private static void registerBlock(Block block, String name) {
         block.setBlockTextureName(Bewitched.MODID + ":" + name);
         block.setBlockName(name);

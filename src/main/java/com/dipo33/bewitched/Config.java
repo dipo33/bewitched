@@ -8,6 +8,12 @@ public class Config {
 
     public static boolean rightClickMatureCropHarvest = true;
 
+    /**
+     * Loads the mod configuration from the provided file
+     *
+     * @param configFile
+     *     the file to load and (if modified) save the configuration to
+     */
     public static void synchronizeConfiguration(File configFile) {
         Configuration configuration = new Configuration(configFile);
 

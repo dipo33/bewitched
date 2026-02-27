@@ -20,27 +20,54 @@ public class Bewitched {
     @SidedProxy(clientSide = "com.dipo33.bewitched.ClientProxy", serverSide = "com.dipo33.bewitched.CommonProxy")
     public static CommonProxy proxy;
 
+    /**
+     * Handle the mod's pre-initialization lifecycle event.
+     * <p>
+     * Delegates pre-initialization work (configuration loading and early registration) to the sided proxy.
+     *
+     * @param event
+     *     the Forge pre-initialization event containing mod configuration and environment data
+     */
     @Mod.EventHandler
-    // preInit "Run before anything else. Read your config, create blocks, items, etc, and register them with the
-    // GameRegistry." (Remove if not needed)
     public void preInit(FMLPreInitializationEvent event) {
         proxy.preInit(event);
     }
 
+    /**
+     * Handle the mod's initialization lifecycle event.
+     * <p>
+     * Delegates initialization work (recipe registration and data structure building) to the sided proxy.
+     *
+     * @param event
+     *     the Forge initialization event containing mod configuration and environment data
+     */
     @Mod.EventHandler
-    // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
     }
 
+    /**
+     * Handle the mod's post-initialization lifecycle event.
+     * <p>
+     * Delegates post-initialization work (interaction with other mods) to the sided proxy.
+     *
+     * @param event
+     *     the Forge post-initialization event containing mod configuration and environment data
+     */
     @Mod.EventHandler
-    // postInit "Handle interaction with other mods, complete your setup based on this." (Remove if not needed)
     public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit(event);
     }
 
+    /**
+     * Handle the mod's server-starting lifecycle event.
+     * <p>
+     * Delegates server-side setup (such as command registration) to the sided proxy.
+     *
+     * @param event
+     *     the Forge server starting event providing access to command registration and server context
+     */
     @Mod.EventHandler
-    // register server commands in this event handler (Remove if not needed)
     public void serverStarting(FMLServerStartingEvent event) {
         proxy.serverStarting(event);
     }

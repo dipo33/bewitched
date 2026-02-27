@@ -11,18 +11,35 @@ import net.minecraft.world.World;
 public class WaterItemSeeds extends ItemSeeds {
     private final Block crop;
 
+    /**
+     * Creates a WaterItemSeeds configured to place the specified crop when planted.
+     *
+     * @param crop
+     *     the Block that will be placed as the crop when this seed is planted
+     * @param soil
+     *     the Block representing the required soil type for planting
+     */
     public WaterItemSeeds(final Block crop, final Block soil) {
         super(crop, soil);
         this.crop = crop;
     }
 
+    /**
+     * Prevents the standard item-use planting behavior for this seed item.
+     *
+     * @return `false` always, indicating the use action did not perform any placement
+     */
     @Override
     public boolean onItemUse(final ItemStack item, final EntityPlayer player, final World world, final int x, final int y, final int z, final int side,
                              final float hitX, final float hitY, final float hitZ) {
         return false;
     }
 
-
+    /**
+     * Attempts to plant the seed on the air block immediately above a targeted source water block when the player right-clicks.
+     *
+     * @return the (possibly modified) ItemStack after the right-click action
+     */
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
         MovingObjectPosition movingObjectPosition = this.getMovingObjectPositionFromPlayer(world, player, true);
