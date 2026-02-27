@@ -20,7 +20,7 @@ public class ItemRegistry {
         new ItemSeeds(BlockRegistry.WOLFSBANE_CROP.get(), Blocks.farmland).setCreativeTab(CreativeTabs.tabMaterials)
     );
     public static final ObjectHolder<Item> WATER_ARTICHOKE_SEED = new ObjectHolder<>(() ->
-        new WaterItemSeeds(BlockRegistry.WATER_ARTICHOKE_CROP.get(), Blocks.water).setCreativeTab(CreativeTabs.tabMaterials)
+        new ItemWaterSeeds(BlockRegistry.WATER_ARTICHOKE_CROP.get(), Blocks.water).setCreativeTab(CreativeTabs.tabMaterials)
     );
     public static final ObjectHolder<Item> MANDRAKE_SEED = new ObjectHolder<>(() ->
         new ItemSeeds(BlockRegistry.MANDRAKE_CROP.get(), Blocks.farmland).setCreativeTab(CreativeTabs.tabMaterials)

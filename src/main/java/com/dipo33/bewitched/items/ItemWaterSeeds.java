@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
-public class WaterItemSeeds extends ItemSeeds {
+public class ItemWaterSeeds extends ItemSeeds {
     private final Block crop;
 
     /**
@@ -19,7 +19,7 @@ public class WaterItemSeeds extends ItemSeeds {
      * @param soil
      *     the Block representing the required soil type for planting
      */
-    public WaterItemSeeds(final Block crop, final Block soil) {
+    public ItemWaterSeeds(final Block crop, final Block soil) {
         super(crop, soil);
         this.crop = crop;
     }
