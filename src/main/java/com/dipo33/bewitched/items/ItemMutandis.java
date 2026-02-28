@@ -1,10 +1,9 @@
 package com.dipo33.bewitched.items;
 
+import com.dipo33.bewitched.client.effect.EffectPlayer;
+import com.dipo33.bewitched.client.effect.Effects;
 import com.dipo33.bewitched.data.Pair;
-import com.dipo33.bewitched.network.BwNetwork;
-import com.dipo33.bewitched.network.message.MutandisFXMsg;
 
-import cpw.mods.fml.common.network.NetworkRegistry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,7 +41,7 @@ public class ItemMutandis extends Item {
 
         if (applyMutandis(stack, world, x, y, z)) {
             if (!world.isRemote) {
-                ItemMutandis.playMutandisFX(world, x, y, z);
+                EffectPlayer.playFX(Effects.MUTANDIS_FX, world, x + 0.5, y + 0.5, z + 0.5, 32);
             }
 
             return true;
@@ -74,14 +73,5 @@ public class ItemMutandis extends Item {
         }
 
         return true;
-    }
-
-    public static void playMutandisFX(World world, double x, double y, double z) {
-        NetworkRegistry.TargetPoint tp = new NetworkRegistry.TargetPoint(
-            world.provider.dimensionId,
-            x + 0.5, y + 0.5, z + 0.5,
-            32
-        );
-        BwNetwork.NET.sendToAllAround(new MutandisFXMsg(world, x, y, z), tp);
     }
 }

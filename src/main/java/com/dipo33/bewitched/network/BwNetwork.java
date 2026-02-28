@@ -1,7 +1,7 @@
 package com.dipo33.bewitched.network;
 
 import com.dipo33.bewitched.Bewitched;
-import com.dipo33.bewitched.network.message.MutandisFXMsg;
+import com.dipo33.bewitched.network.message.EffectPlayMsg;
 
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
@@ -19,6 +19,6 @@ public class BwNetwork {
     }
 
     private static void registerMessages() {
-        NET.registerMessage(MutandisFXMsg.Handler.class, MutandisFXMsg.class, MESSAGE_ID++, Side.CLIENT);
+        NET.registerMessage(EffectPlayMsg.Handler.class, EffectPlayMsg.class, MESSAGE_ID++, Side.CLIENT);
     }
 }

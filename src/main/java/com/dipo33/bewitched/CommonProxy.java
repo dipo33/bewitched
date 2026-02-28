@@ -4,6 +4,7 @@ import com.dipo33.bewitched.block.BlockRegistry;
 import com.dipo33.bewitched.items.ItemRegistry;
 import com.dipo33.bewitched.items.SeedDrops;
 import com.dipo33.bewitched.network.BwNetwork;
+import com.dipo33.bewitched.network.message.EffectPlayMsg;
 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -60,5 +61,8 @@ public class CommonProxy {
      *     the Forge server starting event providing access to command registration and server context
      */
     public void serverStarting(FMLServerStartingEvent event) {
+    }
+
+    public void playFX(EffectPlayMsg message) {
     }
 }

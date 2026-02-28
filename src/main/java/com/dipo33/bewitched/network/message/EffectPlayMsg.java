@@ -1,23 +1,25 @@
 package com.dipo33.bewitched.network.message;
 
-import com.dipo33.bewitched.entity.particle.EntityMutandisFX;
+import com.dipo33.bewitched.Bewitched;
 
+import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
 
-public class MutandisFXMsg implements IMessage {
-    private int dimensionId;
-    private double x, y, z;
+public class EffectPlayMsg implements IMessage {
+    public String effectId;
+    public int dimensionId;
+    public double x, y, z;
 
-    public MutandisFXMsg() {
+    public EffectPlayMsg() {
     }
 
-    public MutandisFXMsg(World world, double x, double y, double z) {
+    public EffectPlayMsg(World world, String effectId, double x, double y, double z) {
         this.dimensionId = world.provider.dimensionId;
+        this.effectId = effectId;
         this.x = x;
         this.y = y;
         this.z = z;
@@ -25,6 +27,7 @@ public class MutandisFXMsg implements IMessage {
 
     @Override
     public void fromBytes(final ByteBuf buf) {
+        this.effectId = ByteBufUtils.readUTF8String(buf);
         this.dimensionId = buf.readInt();
         this.x = buf.readDouble();
         this.y = buf.readDouble();
@@ -33,25 +36,17 @@ public class MutandisFXMsg implements IMessage {
 
     @Override
     public void toBytes(final ByteBuf buf) {
+        ByteBufUtils.writeUTF8String(buf, this.effectId);
         buf.writeInt(this.dimensionId);
         buf.writeDouble(this.x);
         buf.writeDouble(this.y);
         buf.writeDouble(this.z);
     }
 
-    public static class Handler implements IMessageHandler<MutandisFXMsg, IMessage> {
-
+    public static class Handler implements IMessageHandler<EffectPlayMsg, IMessage> {
         @Override
-        public IMessage onMessage(final MutandisFXMsg message, final MessageContext ctx) {
-            Minecraft.getMinecraft().func_152344_a(() -> {
-                World world = Minecraft.getMinecraft().theWorld;
-                if (world == null)
-                    return;
-                if (world.provider.dimensionId != message.dimensionId)
-                    return;
-                EntityMutandisFX.spawnMutandisFX(world, message.x, message.y, message.z);
-            });
-
+        public IMessage onMessage(final EffectPlayMsg message, final MessageContext ctx) {
+            Bewitched.proxy.playFX(message);
             return null;
         }
     }
