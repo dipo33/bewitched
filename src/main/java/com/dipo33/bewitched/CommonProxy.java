@@ -3,6 +3,7 @@ package com.dipo33.bewitched;
 import com.dipo33.bewitched.block.BlockRegistry;
 import com.dipo33.bewitched.items.ItemRegistry;
 import com.dipo33.bewitched.items.SeedDrops;
+import com.dipo33.bewitched.network.BwNetwork;
 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -22,6 +23,7 @@ public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         BlockRegistry.registerBlocks();
         ItemRegistry.registerItems();
+        BwNetwork.register();
 
         Config.synchronizeConfiguration(event.getSuggestedConfigurationFile());
     }

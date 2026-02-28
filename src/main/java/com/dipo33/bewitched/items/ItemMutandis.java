@@ -1,16 +1,14 @@
 package com.dipo33.bewitched.items;
 
 import com.dipo33.bewitched.data.Pair;
-import com.dipo33.bewitched.entity.particle.EntityMutandisFX;
+import com.dipo33.bewitched.network.BwNetwork;
+import com.dipo33.bewitched.network.message.MutandisFXMsg;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -44,8 +42,7 @@ public class ItemMutandis extends Item {
 
         if (applyMutandis(stack, world, x, y, z)) {
             if (!world.isRemote) {
-                // TODO: Do some particles and sounds
-                spawnMutandisFX(world, x, y, z);
+                ItemMutandis.playMutandisFX(world, x, y, z);
             }
 
             return true;
@@ -79,29 +76,12 @@ public class ItemMutandis extends Item {
         return true;
     }
 
-    @SideOnly(Side.CLIENT)
-    public static void spawnMutandisFX(World world, double x, double y, double z) {
-        double radius = 0.8;
-        int count = 32;
-
-        for (int i = 0; i < count; i++) {
-            double offsetX = (world.rand.nextDouble() - 0.5) * 2 * radius;
-            double offsetY = (world.rand.nextDouble() - 0.5) * radius;
-            double offsetZ = (world.rand.nextDouble() - 0.5) * 2 * radius;
-
-            double motionX = (world.rand.nextDouble() - 0.5) * 0.05;
-            double motionY = world.rand.nextDouble() * 0.03;
-            double motionZ = (world.rand.nextDouble() - 0.5) * 0.05;
-
-            EntityFX fx = new EntityMutandisFX(
-                world,
-                x + 0.5 + offsetX,
-                y + 0.5 + offsetY,
-                z + 0.5 + offsetZ,
-                motionX, motionY, motionZ
-            );
-
-            Minecraft.getMinecraft().effectRenderer.addEffect(fx);
-        }
+    public static void playMutandisFX(World world, double x, double y, double z) {
+        NetworkRegistry.TargetPoint tp = new NetworkRegistry.TargetPoint(
+            world.provider.dimensionId,
+            x + 0.5, y + 0.5, z + 0.5,
+            32
+        );
+        BwNetwork.NET.sendToAllAround(new MutandisFXMsg(world, x, y, z), tp);
     }
 }
