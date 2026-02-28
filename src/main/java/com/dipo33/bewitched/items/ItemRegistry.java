@@ -49,6 +49,11 @@ public class ItemRegistry {
         new Item().setCreativeTab(CreativeTabs.tabMaterials)
     );
 
+    // Other
+    public static final ObjectHolder<Item> MUTANDIS = new ObjectHolder<>(() ->
+        new ItemMutandis().setCreativeTab(CreativeTabs.tabMaterials)
+    );
+
     /**
      * Registers every item declared in this class with the game's item registry.
      */
@@ -65,6 +70,8 @@ public class ItemRegistry {
         registerItem(WATER_ARTICHOKE_GLOBE.get(), "water_artichoke_globe");
         registerItem(MANDRAKE_ROOT.get(), "mandrake_root");
         registerItem(ICY_NEEDLE.get(), "icy_needle");
+
+        registerItem(MUTANDIS.get(), "mutandis");
     }
 
     /**
