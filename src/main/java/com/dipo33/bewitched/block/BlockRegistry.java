@@ -10,6 +10,7 @@ import net.minecraft.init.Items;
 import net.minecraftforge.common.EnumPlantType;
 
 public class BlockRegistry {
+    // Crops
     public static final ObjectHolder<Block> BELLADONNA_CROP = new ObjectHolder<>(() ->
         new BwBlockCrops(ItemRegistry.BELLADONNA_SEED, ItemRegistry.BELLADONNA_FLOWER)
             .setStages(5)
@@ -37,6 +38,13 @@ public class BlockRegistry {
             .setStages(6)
     );
 
+    // Plants
+    public static final ObjectHolder<Block> SPANISH_MOSS = new ObjectHolder<>(() ->
+        new BlockSpanishMoss().setCreativeTab(Bewitched.CREATIVE_TAB)
+            .setHardness(0.2F)
+            .setStepSound(Block.soundTypeGrass)
+    );
+
     /**
      * Register the mod's crop blocks with the game registry.
      */
@@ -47,6 +55,8 @@ public class BlockRegistry {
         registerBlock(MANDRAKE_CROP.get(), "mandrake");
         registerBlock(SNOW_WISP_CROP.get(), "snow_wisp");
         registerBlock(GARLIC_CROP.get(), "garlic");
+
+        registerBlock(SPANISH_MOSS.get(), "spanish_moss");
     }
 
     /**
