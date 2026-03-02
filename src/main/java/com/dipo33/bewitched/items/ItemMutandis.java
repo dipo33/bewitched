@@ -2,16 +2,13 @@ package com.dipo33.bewitched.items;
 
 import com.dipo33.bewitched.client.effect.EffectPlayer;
 import com.dipo33.bewitched.client.effect.Effects;
-import com.dipo33.bewitched.data.Pair;
+import com.dipo33.bewitched.items.mutandis.MutandisMutation;
+import com.dipo33.bewitched.items.mutandis.MutandisMutationRegistry;
 import com.dipo33.bewitched.network.BwNetwork;
 import com.dipo33.bewitched.network.message.UpdateFlowerPotMsg;
 import com.dipo33.bewitched.sound.Sounds;
 
 import cpw.mods.fml.common.network.NetworkRegistry;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -23,50 +20,6 @@ import net.minecraft.tileentity.TileEntityFlowerPot;
 import net.minecraft.world.World;
 
 public class ItemMutandis extends Item {
-
-    private static final List<Pair<Block, Integer>> BLOCKS = new ArrayList<>(
-        Arrays.asList(
-            new Pair<>(Blocks.tallgrass, 1),
-            new Pair<>(Blocks.tallgrass, 2),
-            new Pair<>(Blocks.brown_mushroom, 0),
-            new Pair<>(Blocks.red_mushroom, 0),
-            new Pair<>(Blocks.red_flower, 0),
-            new Pair<>(Blocks.yellow_flower, 0),
-            new Pair<>(Blocks.sapling, 0),
-            new Pair<>(Blocks.sapling, 1),
-            new Pair<>(Blocks.sapling, 2),
-            new Pair<>(Blocks.sapling, 3),
-            new Pair<>(Blocks.sapling, 4),
-            new Pair<>(Blocks.sapling, 5),
-            new Pair<>(Blocks.waterlily, 0)
-        ));
-
-    private static final List<Pair<Block, Integer>> ADDITIONAL_SOURCE_BLOCKS = new ArrayList<>(
-        Arrays.asList(
-            new Pair<>(Blocks.sapling, 8),
-            new Pair<>(Blocks.sapling, 9),
-            new Pair<>(Blocks.sapling, 10),
-            new Pair<>(Blocks.sapling, 11),
-            new Pair<>(Blocks.sapling, 12),
-            new Pair<>(Blocks.sapling, 13)
-        ));
-
-    private static final List<Pair<Block, Integer>> FLOWER_POT_BLOCKS = new ArrayList<>(
-        Arrays.asList(
-            new Pair<>(Blocks.yellow_flower, 0),
-            new Pair<>(Blocks.red_flower, 0),
-            new Pair<>(Blocks.cactus, 0),
-            new Pair<>(Blocks.brown_mushroom, 0),
-            new Pair<>(Blocks.red_mushroom, 0),
-            new Pair<>(Blocks.sapling, 0),
-            new Pair<>(Blocks.sapling, 1),
-            new Pair<>(Blocks.sapling, 2),
-            new Pair<>(Blocks.sapling, 3),
-            new Pair<>(Blocks.sapling, 4),
-            new Pair<>(Blocks.sapling, 5),
-            new Pair<>(Blocks.deadbush, 0),
-            new Pair<>(Blocks.tallgrass, 2)
-        ));
 
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
@@ -86,55 +39,34 @@ public class ItemMutandis extends Item {
         return false;
     }
 
-    private static Pair<Block, Integer> getMutationResult(
-        Random random, Pair<Block, Integer> currentBlock, List<Pair<Block, Integer>> mutationPool, List<Pair<Block, Integer>> additionalSources
-    ) {
-        int currentIndex = mutationPool.indexOf(currentBlock);
-
-        if (currentIndex < 0) {
-            boolean isAdditional = additionalSources != null && additionalSources.contains(currentBlock);
-            if (isAdditional) {
-                return mutationPool.get(random.nextInt(mutationPool.size()));
-            }
-
-            return null;
-        }
-
-        // Pick a random index in [0, n-2], then shift if it crosses currentIndex.
-        int randomIndex = random.nextInt(mutationPool.size() - 1);
-        if (randomIndex >= currentIndex) {
-            randomIndex++;
-        }
-
-        return mutationPool.get(randomIndex);
-    }
-
     private static boolean applyMutationToWorldBlock(
-        ItemStack stack, World world, int x, int y, int z, Pair<Block, Integer> mutationResult
+        ItemStack stack, World world, int x, int y, int z, MutandisMutation mutation
     ) {
-        if (mutationResult == null) {
+        if (mutation == null) {
             return false;
         }
 
         if (!world.isRemote) {
-            world.setBlock(x, y, z, mutationResult.first(), mutationResult.second(), 2);
+            int meta = mutation.output().placement().placementMeta(world, x, y, z);
+            world.setBlock(x, y, z, mutation.output().block(), meta, 2);
             stack.stackSize--;
         }
         return true;
     }
 
     private static boolean applyMutationToFlowerPot(
-        ItemStack stack, World world, TileEntityFlowerPot pot, Pair<Block, Integer> result
+        ItemStack stack, World world, TileEntityFlowerPot pot, MutandisMutation mutation
     ) {
-        if (result == null) {
+        if (mutation == null) {
             return false;
         }
 
         if (!world.isRemote) {
-            pot.func_145964_a(Item.getItemFromBlock(result.first()), result.second());
+            int meta = mutation.output().placement().placementMeta(world, pot.xCoord, pot.yCoord, pot.zCoord);
+            pot.func_145964_a(Item.getItemFromBlock(mutation.output().block()), meta);
             pot.markDirty();
 
-            if (!world.setBlockMetadataWithNotify(pot.xCoord, pot.yCoord, pot.zCoord, result.second(), 2)) {
+            if (!world.setBlockMetadataWithNotify(pot.xCoord, pot.yCoord, pot.zCoord, meta, 2)) {
                 world.markBlockForUpdate(pot.xCoord, pot.yCoord, pot.zCoord);
             }
 
@@ -150,16 +82,16 @@ public class ItemMutandis extends Item {
 
     private static boolean applyMutandis(ItemStack stack, World world, int x, int y, int z) {
         Block block = world.getBlock(x, y, z);
+        int metadata = world.getBlockMetadata(x, y, z);
         if (block == Blocks.flower_pot) {
-            return mutateFlowerPot(stack, world, x, y, z);
+            return applyMutandisOnFlowerPot(stack, world, x, y, z);
         }
 
-        int metadata = world.getBlockMetadata(x, y, z);
-        var mutationResult = getMutationResult(world.rand, new Pair<>(block, metadata), BLOCKS, ADDITIONAL_SOURCE_BLOCKS);
-        return applyMutationToWorldBlock(stack, world, x, y, z, mutationResult);
+        var mutation = MutandisMutation.mutate(MutandisMutationRegistry.WORLD_MUTATIONS, block, metadata, world.rand);
+        return applyMutationToWorldBlock(stack, world, x, y, z, mutation);
     }
 
-    private static boolean mutateFlowerPot(ItemStack stack, World world, int x, int y, int z) {
+    private static boolean applyMutandisOnFlowerPot(ItemStack stack, World world, int x, int y, int z) {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (!(tileEntity instanceof TileEntityFlowerPot pot)) {
             return false;
@@ -172,8 +104,7 @@ public class ItemMutandis extends Item {
 
         Block contained = Block.getBlockFromItem(itemBlock);
         int meta = pot.getFlowerPotData();
-        Pair<Block, Integer> mutationResult = getMutationResult(world.rand, new Pair<>(contained, meta), FLOWER_POT_BLOCKS, null);
-
-        return applyMutationToFlowerPot(stack, world, pot, mutationResult);
+        var mutation = MutandisMutation.mutate(MutandisMutationRegistry.FLOWER_POT_MUTATIONS, contained, meta, world.rand);
+        return applyMutationToFlowerPot(stack, world, pot, mutation);
     }
 }
