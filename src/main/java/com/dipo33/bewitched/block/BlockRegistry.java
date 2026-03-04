@@ -45,10 +45,20 @@ public class BlockRegistry {
             .setStepSound(Block.soundTypeGrass)
     );
     public static final ObjectHolder<Block> GLINT_WEED = new ObjectHolder<>(() ->
-        new BlockGlintWeed().setCreativeTab(Bewitched.CREATIVE_TAB)
+        new BlockSpreadablePlant(true)
+            .withBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F) // TODO: Based on texture
+            .setCreativeTab(Bewitched.CREATIVE_TAB)
             .setHardness(0F)
             .setStepSound(Block.soundTypeGrass)
             .setLightLevel(0.9375F)
+    );
+    public static final ObjectHolder<Block> EMBER_MOSS = new ObjectHolder<>(() ->
+        new BlockSpreadablePlant(false)
+            .withBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.375F, 1.0F) // TODO: Based on texture
+            .setCreativeTab(Bewitched.CREATIVE_TAB)
+            .setHardness(0F)
+            .setStepSound(Block.soundTypeGrass)
+            .setLightLevel(0.4375F)
     );
 
     /**
@@ -64,6 +74,7 @@ public class BlockRegistry {
 
         registerBlock(SPANISH_MOSS.get(), "spanish_moss");
         registerBlock(GLINT_WEED.get(), "glint_weed");
+        registerBlock(EMBER_MOSS.get(), "ember_moss");
     }
 
     /**

@@ -10,16 +10,23 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockGlintWeed extends BlockBush {
-    protected BlockGlintWeed() {
+public class BlockSpreadablePlant extends BlockBush {
+    private final boolean canHang;
+
+    protected BlockSpreadablePlant(boolean canHang) {
         super(Material.plants);
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+        this.canHang = canHang;
+    }
+
+    public BlockSpreadablePlant withBlockBounds(float minX, float minY, float minZ, float maxX, float maxY, float maxZ) {
+        this.setBlockBounds(minX, minY, minZ, maxX, maxY, maxZ);
+        return this;
     }
 
     @Override
     public boolean canBlockStay(final World worldIn, final int x, final int y, final int z) {
         return worldIn.getBlock(x, y - 1, z).isBlockSolid(worldIn, x, y - 1, z, ForgeDirection.UP.flag)
-            || worldIn.getBlock(x, y + 1, z).isBlockSolid(worldIn, x, y + 1, z, ForgeDirection.UP.flag);
+            || (worldIn.getBlock(x, y + 1, z).isBlockSolid(worldIn, x, y + 1, z, ForgeDirection.UP.flag) && canHang);
     }
 
     @Override
