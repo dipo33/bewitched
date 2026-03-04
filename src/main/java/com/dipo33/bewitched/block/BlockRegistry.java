@@ -48,6 +48,7 @@ public class BlockRegistry {
         new BlockGlintWeed().setCreativeTab(Bewitched.CREATIVE_TAB)
             .setHardness(0F)
             .setStepSound(Block.soundTypeGrass)
+            .setLightLevel(0.9375F)
     );
 
     /**
