@@ -45,7 +45,7 @@ public class BlockRegistry {
             .setStepSound(Block.soundTypeGrass)
     );
     public static final ObjectHolder<Block> GLINT_WEED = new ObjectHolder<>(() ->
-        new BlockSpreadablePlant(true)
+        new BlockSmolderingPlant(true, new BlockSmolderingPlant.SmolderConfig(20F / 32F, 10.5F / 16F, 4F / 16F))
             .withBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F) // TODO: Based on texture
             .setCreativeTab(Bewitched.CREATIVE_TAB)
             .setHardness(0F)
@@ -53,7 +53,7 @@ public class BlockRegistry {
             .setLightLevel(0.9375F)
     );
     public static final ObjectHolder<Block> EMBER_MOSS = new ObjectHolder<>(() ->
-        new BlockSpreadablePlant(false)
+        new BlockSmolderingPlant(false, new BlockSmolderingPlant.SmolderConfig(1F / 32F, 2F / 16F, 10F / 16F))
             .withBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.375F, 1.0F) // TODO: Based on texture
             .setCreativeTab(Bewitched.CREATIVE_TAB)
             .setHardness(0F)

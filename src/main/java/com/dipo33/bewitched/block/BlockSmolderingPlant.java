@@ -1,7 +1,10 @@
 package com.dipo33.bewitched.block;
 
 import com.dipo33.bewitched.data.Position;
+import com.github.bsideup.jabel.Desugar;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
@@ -10,15 +13,17 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockSpreadablePlant extends BlockBush {
+public class BlockSmolderingPlant extends BlockBush {
     private final boolean canHang;
+    private final SmolderConfig smolderConfig;
 
-    protected BlockSpreadablePlant(boolean canHang) {
+    protected BlockSmolderingPlant(boolean canHang, SmolderConfig smolderConfig) {
         super(Material.plants);
         this.canHang = canHang;
+        this.smolderConfig = smolderConfig;
     }
 
-    public BlockSpreadablePlant withBlockBounds(float minX, float minY, float minZ, float maxX, float maxY, float maxZ) {
+    public BlockSmolderingPlant withBlockBounds(float minX, float minY, float minZ, float maxX, float maxY, float maxZ) {
         this.setBlockBounds(minX, minY, minZ, maxX, maxY, maxZ);
         return this;
     }
@@ -97,4 +102,24 @@ public class BlockSpreadablePlant extends BlockBush {
             block == Blocks.grass || block == Blocks.dirt || block == Blocks.farmland || block == Blocks.sand
         );
     }
+
+    @SideOnly(Side.CLIENT)
+    public void randomDisplayTick(World world, int x, int y, int z, Random rng) {
+        if (rng.nextFloat() < this.smolderConfig.intensity) {
+            final float CENTER_OFFSET = 0.5F;
+            final float HEIGHT_VARIATION = 4F / 16F;
+
+            float baseX = x + CENTER_OFFSET;
+            float baseY = y + this.smolderConfig.center + (rng.nextFloat() - 0.5F) * HEIGHT_VARIATION;
+            float baseZ = z + CENTER_OFFSET;
+
+            float xOffset = rng.nextFloat() * this.smolderConfig.horizontalVariation - (this.smolderConfig.horizontalVariation / 2);
+            float zOffset = rng.nextFloat() * this.smolderConfig.horizontalVariation - (this.smolderConfig.horizontalVariation / 2);
+
+            world.spawnParticle("flame", baseX + xOffset, baseY, baseZ + zOffset, 0.0D, 0.0D, 0.0D);
+        }
+    }
+
+    @Desugar
+    public record SmolderConfig(float intensity, float center, float horizontalVariation) {}
 }
