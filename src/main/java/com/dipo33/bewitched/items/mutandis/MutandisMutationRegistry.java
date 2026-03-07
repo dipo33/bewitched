@@ -157,6 +157,42 @@ public class MutandisMutationRegistry {
                 MutandisMutation.Source.exact(Blocks.sapling, 5),
                 MutandisMutation.Source.exact(Blocks.sapling, 13)
             )
+        ),
+
+        // ─────────────────────────────
+        // Rowan sapling
+        // Includes growth-flag variant (meta 8)
+        // ─────────────────────────────
+        new MutandisMutation(
+            new MutandisMutation.Output(BlockRegistry.SAPLING.get(), MutandisMutation.basicStrategy(0)),
+            Arrays.asList(
+                MutandisMutation.Source.exact(BlockRegistry.SAPLING.get(), 0),
+                MutandisMutation.Source.exact(BlockRegistry.SAPLING.get(), 8)
+            )
+        ),
+
+        // ─────────────────────────────
+        // Alder sapling
+        // Includes growth-flag variant (meta 9)
+        // ─────────────────────────────
+        new MutandisMutation(
+            new MutandisMutation.Output(BlockRegistry.SAPLING.get(), MutandisMutation.basicStrategy(1)),
+            Arrays.asList(
+                MutandisMutation.Source.exact(BlockRegistry.SAPLING.get(), 1),
+                MutandisMutation.Source.exact(BlockRegistry.SAPLING.get(), 9)
+            )
+        ),
+
+        // ─────────────────────────────
+        // Hawthorn sapling
+        // Includes growth-flag variant (meta 10)
+        // ─────────────────────────────
+        new MutandisMutation(
+            new MutandisMutation.Output(BlockRegistry.SAPLING.get(), MutandisMutation.basicStrategy(2)),
+            Arrays.asList(
+                MutandisMutation.Source.exact(BlockRegistry.SAPLING.get(), 2),
+                MutandisMutation.Source.exact(BlockRegistry.SAPLING.get(), 10)
+            )
         )
     );
 

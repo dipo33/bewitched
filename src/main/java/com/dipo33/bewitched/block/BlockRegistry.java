@@ -3,10 +3,12 @@ package com.dipo33.bewitched.block;
 import com.dipo33.bewitched.Bewitched;
 import com.dipo33.bewitched.data.ObjectHolder;
 import com.dipo33.bewitched.items.ItemRegistry;
+import com.dipo33.bewitched.items.ItemSaplingMultiTexture;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.common.EnumPlantType;
 
 public class BlockRegistry {
@@ -60,6 +62,12 @@ public class BlockRegistry {
             .setStepSound(Block.soundTypeGrass)
             .setLightLevel(0.4375F)
     );
+    public static final ObjectHolder<Block> SAPLING = new ObjectHolder<>(() ->
+        new BlockBwSapling()
+            .setCreativeTab(Bewitched.CREATIVE_TAB)
+            .setStepSound(Block.soundTypeGrass)
+            .setHardness(0.0F)
+    );
 
     /**
      * Register the mod's crop blocks with the game registry.
@@ -75,6 +83,7 @@ public class BlockRegistry {
         registerBlock(SPANISH_MOSS.get(), "spanish_moss");
         registerBlock(GLINT_WEED.get(), "glint_weed");
         registerBlock(EMBER_MOSS.get(), "ember_moss");
+        registerBlock(SAPLING.get(), ItemSaplingMultiTexture.class, "sapling");
     }
 
     /**
@@ -89,5 +98,17 @@ public class BlockRegistry {
         block.setBlockTextureName(Bewitched.MODID + ":" + name);
         block.setBlockName(name);
         GameRegistry.registerBlock(block, name);
+    }
+
+    private static void registerBlockWithoutItem(Block block, String name) {
+        block.setBlockTextureName(Bewitched.MODID + ":" + name);
+        block.setBlockName(name);
+        GameRegistry.registerBlock(block, null, name);
+    }
+
+    private static void registerBlock(Block block, Class<? extends ItemBlock> itemclass, String name, Object... variants) {
+        block.setBlockTextureName(Bewitched.MODID + ":" + name);
+        block.setBlockName(name);
+        GameRegistry.registerBlock(block, itemclass, name, variants);
     }
 }

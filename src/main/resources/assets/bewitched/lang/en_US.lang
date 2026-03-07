@@ -24,5 +24,8 @@ tile.garlic.name=Garlic Crop
 tile.spanish_moss.name=Spanish Moss
 tile.glint_weed.name=Glint Weed
 tile.ember_moss.name=Ember Moss
+tile.sapling.rowan.name=Rowan Sapling
+tile.sapling.alder.name=Alder Sapling
+tile.sapling.hawthorn.name=Hawthorn Sapling
 
 itemGroup.bewitched=Bewitched
