@@ -1,6 +1,6 @@
 package com.dipo33.bewitched.block;
 
-import com.dipo33.bewitched.Config;
+import com.dipo33.bewitched.config.Config;
 import com.dipo33.bewitched.data.ObjectHolder;
 import com.dipo33.bewitched.data.Pair;
 
