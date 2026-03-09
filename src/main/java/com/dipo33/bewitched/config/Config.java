@@ -1,7 +1,7 @@
 package com.dipo33.bewitched.config;
 
 import com.dipo33.bewitched.Bewitched;
-import com.dipo33.bewitched.items.mutandis.MutandisMutation;
+import com.dipo33.bewitched.api.mutation.Mutation;
 
 import java.io.File;
 import java.util.Arrays;
@@ -14,10 +14,10 @@ public class Config {
 
     public static boolean rightClickMatureCropHarvest = true;
 
-    public static Collection<MutandisMutation> mutandisAdditionalMutations;
-    public static Collection<MutandisMutation> mutandisAdditionalFlowerPotMutations;
-    public static Collection<MutandisMutation> mutandisExtremisAdditionalMutations;
-    public static Collection<MutandisMutation> mutandisExtremisAdditionalGrassMutations;
+    public static Collection<Mutation> mutandisAdditionalMutations;
+    public static Collection<Mutation> mutandisAdditionalFlowerPotMutations;
+    public static Collection<Mutation> mutandisExtremisAdditionalMutations;
+    public static Collection<Mutation> mutandisExtremisAdditionalGrassMutations;
 
     /**
      * Loads the mod configuration from the provided file
@@ -68,7 +68,7 @@ public class Config {
         }
     }
 
-    private static MutandisMutation tryParseMutation(String line) {
+    private static Mutation tryParseMutation(String line) {
         try {
             return Parsers.parseMutation(line);
         } catch (Exception e) {

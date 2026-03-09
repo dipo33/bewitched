@@ -2,10 +2,10 @@ package com.dipo33.bewitched;
 
 import com.dipo33.bewitched.block.BlockRegistry;
 import com.dipo33.bewitched.config.Config;
+import com.dipo33.bewitched.init.BewitchedMutations;
 import com.dipo33.bewitched.init.BewitchedRecipes;
 import com.dipo33.bewitched.items.ItemRegistry;
 import com.dipo33.bewitched.items.SeedDrops;
-import com.dipo33.bewitched.items.mutandis.MutandisMutationRegistry;
 import com.dipo33.bewitched.network.BwNetwork;
 import com.dipo33.bewitched.network.message.EffectPlayMsg;
 import com.dipo33.bewitched.network.message.UpdateFlowerPotMsg;
@@ -49,7 +49,7 @@ public class CommonProxy {
      */
     public void init(FMLInitializationEvent event) {
         BewitchedRecipes.init();
-        MutandisMutationRegistry.registerMutations();
+        BewitchedMutations.init();
         SeedDrops.dropSeedsFromGrass();
     }
 

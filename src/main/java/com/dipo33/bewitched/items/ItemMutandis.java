@@ -1,9 +1,10 @@
 package com.dipo33.bewitched.items;
 
+import com.dipo33.bewitched.api.mutation.MutationPoolType;
+import com.dipo33.bewitched.api.mutation.MutationRegistry;
 import com.dipo33.bewitched.client.effect.EffectPlayer;
 import com.dipo33.bewitched.client.effect.Effects;
-import com.dipo33.bewitched.items.mutandis.MutandisMutation;
-import com.dipo33.bewitched.items.mutandis.MutandisMutationRegistry;
+import com.dipo33.bewitched.api.mutation.Mutation;
 import com.dipo33.bewitched.network.BwNetwork;
 import com.dipo33.bewitched.network.message.UpdateFlowerPotMsg;
 import com.dipo33.bewitched.sound.Sounds;
@@ -21,6 +22,12 @@ import net.minecraft.tileentity.TileEntityFlowerPot;
 import net.minecraft.world.World;
 
 public class ItemMutandis extends Item {
+
+    private static final MutationPoolType[] WORLD_POOLS = {
+        MutationPoolType.MUTANDIS,
+        MutationPoolType.MUTANDIS_EXTREMIS_GRASS,
+        MutationPoolType.MUTANDIS_EXTREMIS
+    };
 
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
@@ -46,21 +53,21 @@ public class ItemMutandis extends Item {
     }
 
     private static boolean applyMutationToWorldBlock(
-        ItemStack stack, World world, int x, int y, int z, MutandisMutation.Output mutationOutput
+        ItemStack catalyst, World world, int x, int y, int z, Mutation.Output mutationOutput
     ) {
         if (!world.isRemote) {
             int meta = mutationOutput.placement().placementMeta(world, x, y, z);
             world.setBlock(x, y, z, mutationOutput.block(), meta, 2);
-            stack.stackSize--;
+            catalyst.stackSize--;
         }
         return true;
     }
 
     private static boolean applyMutationToFlowerPot(
-        ItemStack stack, World world, TileEntityFlowerPot pot, MutandisMutation.Output mutationOutput
+        ItemStack catalyst, World world, TileEntityFlowerPot pot, Mutation.Output mutationOutput
     ) {
         if (!world.isRemote) {
-            int meta = mutationOutput.placement().placementMeta(world, pot.xCoord, pot.yCoord, pot.zCoord);
+            int meta = mutationOutput.placement().defaultPlacementMeta();
             pot.func_145964_a(Item.getItemFromBlock(mutationOutput.block()), meta);
             pot.markDirty();
 
@@ -73,23 +80,26 @@ public class ItemMutandis extends Item {
                 new NetworkRegistry.TargetPoint(world.provider.dimensionId, pot.xCoord + 0.5, pot.yCoord + 0.5, pot.zCoord + 0.5, 128)
             );
 
-            stack.stackSize--;
+            catalyst.stackSize--;
         }
         return true;
     }
 
-    private boolean applyMutandis(ItemStack stack, World world, int x, int y, int z) {
+    private boolean applyMutandis(ItemStack catalyst, World world, int x, int y, int z) {
         Block block = world.getBlock(x, y, z);
         int meta = world.getBlockMetadata(x, y, z);
         if (block == Blocks.flower_pot) {
-            return applyMutandisOnFlowerPot(stack, world, x, y, z);
+            if (MutationRegistry.isCatalyst(MutationPoolType.FLOWER_POT, catalyst)) {
+                return applyMutandisOnFlowerPot(catalyst, world, x, y, z);
+            }
+            return false;
         }
 
-        var mutation = pickMutation(block, meta, world.rand);
-        return mutation != null && applyMutationToWorldBlock(stack, world, x, y, z, mutation.output());
+        var mutation = pickMutation(catalyst, block, meta, world.rand);
+        return mutation != null && applyMutationToWorldBlock(catalyst, world, x, y, z, mutation.output());
     }
 
-    private static boolean applyMutandisOnFlowerPot(ItemStack stack, World world, int x, int y, int z) {
+    private static boolean applyMutandisOnFlowerPot(ItemStack catalyst, World world, int x, int y, int z) {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (!(tileEntity instanceof TileEntityFlowerPot pot)) {
             return false;
@@ -102,16 +112,19 @@ public class ItemMutandis extends Item {
 
         Block contained = Block.getBlockFromItem(itemBlock);
         int meta = pot.getFlowerPotData();
-        var mutation = MutandisMutation.mutate(MutandisMutationRegistry.FLOWER_POT_MUTATIONS, contained, meta, world.rand);
-        return mutation != null && applyMutationToFlowerPot(stack, world, pot, mutation.output());
+        var mutation = Mutation.mutate(MutationPoolType.FLOWER_POT, contained, meta, world.rand);
+        return mutation != null && applyMutationToFlowerPot(catalyst, world, pot, mutation.output());
     }
 
-    private MutandisMutation pickMutation(Block block, int meta, Random rng) {
-        if (this == ItemRegistry.MUTANDIS_EXTREMIS.get()) {
-            MutandisMutation m = MutandisMutation.mutate(MutandisMutationRegistry.ADVANCED_WORLD_MUTATIONS, block, meta, rng);
-            return m != null ? m : MutandisMutation.mutate(MutandisMutationRegistry.SPECIAL_WORLD_MUTATIONS, block, meta, rng);
-        } else {
-            return MutandisMutation.mutate(MutandisMutationRegistry.WORLD_MUTATIONS, block, meta, rng);
+    private Mutation pickMutation(ItemStack catalyst, Block block, int meta, Random rng) {
+        for (var pool : WORLD_POOLS) {
+            if (MutationRegistry.isCatalyst(pool, catalyst)) {
+                Mutation mutation = Mutation.mutate(pool, block, meta, rng);
+                if (mutation != null) {
+                    return mutation;
+                }
+            }
         }
+        return null;
     }
 }

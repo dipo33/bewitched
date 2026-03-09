@@ -1,7 +1,7 @@
 package com.dipo33.bewitched.config;
 
 import com.dipo33.bewitched.data.MetaBlock;
-import com.dipo33.bewitched.items.mutandis.MutandisMutation;
+import com.dipo33.bewitched.api.mutation.Mutation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import net.minecraft.init.Blocks;
 
 public class Parsers {
 
-    public static MutandisMutation parseMutation(String line) {
+    public static Mutation parseMutation(String line) {
         String[] arrow = line.split("->", 2);
         if (arrow.length != 2) {
             throw new IllegalArgumentException("Missing '->'");
@@ -19,26 +19,26 @@ public class Parsers {
         String sourcesPart = arrow[0].trim();
         String outputPart = arrow[1].trim();
 
-        List<MutandisMutation.Source> sources = new ArrayList<>();
+        List<Mutation.Source> sources = new ArrayList<>();
         for (String token : sourcesPart.split("\\+")) {
             sources.add(parseSource(token.trim()));
         }
 
         MetaBlock output = parseMetaBlock(outputPart, true);
 
-        return new MutandisMutation(
-            new MutandisMutation.Output(output.block(), MutandisMutation.basicStrategy(output.meta())),
+        return new Mutation(
+            new Mutation.Output(output.block(), Mutation.basicStrategy(output.meta())),
             sources
         );
     }
 
-    private static MutandisMutation.Source parseSource(String token) {
+    private static Mutation.Source parseSource(String token) {
         MetaBlock parsed = parseMetaBlock(token, false);
 
         if (parsed.meta() == null) {
-            return MutandisMutation.Source.anyMeta(parsed.block());
+            return Mutation.Source.anyMeta(parsed.block());
         } else {
-            return MutandisMutation.Source.exact(parsed.block(), parsed.meta());
+            return Mutation.Source.exact(parsed.block(), parsed.meta());
         }
     }
 
