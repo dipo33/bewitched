@@ -13,9 +13,13 @@ import net.minecraft.world.World;
  */
 public class BlockMandrakeCrop extends BlockBewitchedCrops {
 
-    /** Higher chance for a mandrake to spawn when the crop is harvested in daylight. */
+    /**
+     * Higher chance for a mandrake to spawn when the crop is harvested in daylight.
+     */
     private static final double SPAWN_CHANCE_DAY = 1.0D;
-    /** Lower chance at night than daytime. */
+    /**
+     * Lower chance at night than daytime.
+     */
     private static final double SPAWN_CHANCE_NIGHT = 0.15D;
 
     public BlockMandrakeCrop() {
@@ -24,29 +28,30 @@ public class BlockMandrakeCrop extends BlockBewitchedCrops {
     }
 
     @Override
-    public ArrayList<ItemStack> getDrops(final World world, final int x, final int y, final int z, final int metadata, final int fortune) {
-        ArrayList<ItemStack> drops = super.getDrops(world, x, y, z, metadata, fortune);
+    public void dropBlockAsItemWithChance(final World world, final int x, final int y, final int z, final int metadata, final float chance,
+                                          final int fortune) {
         if (metadata < 7 || world.isRemote) {
-            return drops;
+            super.dropBlockAsItemWithChance(world, x, y, z, metadata, chance, fortune);
+            return;
         }
 
         if (world.difficultySetting == EnumDifficulty.PEACEFUL) {
-            return drops;
+            super.dropBlockAsItemWithChance(world, x, y, z, metadata, chance, fortune);
+            return;
         }
 
-        double chance = isDaytime(world) ? SPAWN_CHANCE_DAY : SPAWN_CHANCE_NIGHT;
-        if (world.rand.nextDouble() >= chance) {
-            return drops;
+        double spawnChance = isDaytime(world) ? SPAWN_CHANCE_DAY : SPAWN_CHANCE_NIGHT;
+        if (world.rand.nextDouble() >= spawnChance) {
+            super.dropBlockAsItemWithChance(world, x, y, z, metadata, chance, fortune);
+            return;
         }
 
         EntityMandrake mandrake = new EntityMandrake(world);
         mandrake.setPosition(x + 0.5D, y, z + 0.5D);
-        if (!world.spawnEntityInWorld(mandrake)) {
-            return drops;
-        }
 
-        drops.clear();
-        return drops;
+        if (!world.spawnEntityInWorld(mandrake)) {
+            super.dropBlockAsItemWithChance(world, x, y, z, metadata, chance, fortune);
+        }
     }
 
     /**
