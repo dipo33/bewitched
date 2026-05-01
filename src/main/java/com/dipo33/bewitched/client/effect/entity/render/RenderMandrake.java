@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderMandrake extends RenderLiving {
+    // TODO: change to mandrake texture
     private static final ResourceLocation texture =
         new ResourceLocation("minecraft:textures/blocks/dirt.png");
 
