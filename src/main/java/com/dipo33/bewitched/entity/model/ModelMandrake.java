@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
 
 public class ModelMandrake extends ModelBase {
 
@@ -160,12 +161,25 @@ public class ModelMandrake extends ModelBase {
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         leg_r.render(f5);
         leg_l.render(f5);
         arm_r.render(f5);
         body.render(f5);
         head.render(f5);
         arm_l.render(f5);
+    }
+
+    @Override
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor,
+                                  Entity entity) {
+        head.rotateAngleY = netHeadYaw * ((float) Math.PI / 180F);
+        head.rotateAngleX = headPitch * ((float) Math.PI / 180F);
+
+        leg_r.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        leg_l.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+        arm_r.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+        arm_l.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
     }
 
     public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
