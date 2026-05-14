@@ -33,8 +33,7 @@ public class ItemEarmuffs extends ItemArmor {
     }
 
     @Override
-    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
-    {
+    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
         return BewitchedItemArmor.getArmorTexture("earmuffs");
     }
 }

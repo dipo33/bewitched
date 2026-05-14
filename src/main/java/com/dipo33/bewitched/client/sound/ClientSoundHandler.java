@@ -4,6 +4,8 @@ import com.dipo33.bewitched.init.BewitchedItems;
 
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -11,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.sound.PlaySoundEvent17;
 import net.minecraftforge.common.MinecraftForge;
 
+@SideOnly(Side.CLIENT)
 public class ClientSoundHandler {
 
     public static void init() {
@@ -20,6 +23,7 @@ public class ClientSoundHandler {
     private boolean isWhiteListedSound(String name) {
         return name.startsWith("gui.");
     }
+
     private boolean isBlackListedSound(String name) {
         return name.startsWith("records.") || name.startsWith("music_disc.");
     }

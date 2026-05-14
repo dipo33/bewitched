@@ -1,11 +1,14 @@
 package com.dipo33.bewitched.entity.model;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
+@SideOnly(Side.CLIENT)
 public class ModelMandrake extends ModelBase {
 
     private final ModelRenderer leg_r;
@@ -160,14 +163,14 @@ public class ModelMandrake extends ModelBase {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        leg_r.render(f5);
-        leg_l.render(f5);
-        arm_r.render(f5);
-        body.render(f5);
-        head.render(f5);
-        arm_l.render(f5);
+    public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+        setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);
+        leg_r.render(scaleFactor);
+        leg_l.render(scaleFactor);
+        arm_r.render(scaleFactor);
+        body.render(scaleFactor);
+        head.render(scaleFactor);
+        arm_l.render(scaleFactor);
     }
 
     @Override

@@ -45,7 +45,7 @@ public class ClientProxy extends CommonProxy {
         BewitchedNetwork.registerClientMessage(UpdateFlowerPotMsgHandler.class, UpdateFlowerPotMsg.class);
     }
 
-    public void registerRenderers() {
+    private void registerRenderers() {
         RenderingRegistry.registerEntityRenderingHandler(
             EntityMandrake.class,
             new RenderMandrake(new ModelMandrake(), 0.5F)
