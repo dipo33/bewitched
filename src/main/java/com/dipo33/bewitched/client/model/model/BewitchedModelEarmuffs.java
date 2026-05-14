@@ -1,6 +1,4 @@
-package com.dipo33.bewitched.client.model.model;// Made with Blockbench 5.1.3
-// Exported for Minecraft version 1.7 - 1.12
-// Paste this class into your mod and generate all required imports
+package com.dipo33.bewitched.client.model.model;
 
 import com.dipo33.bewitched.client.model.BewitchedModel;
 
@@ -32,10 +30,4 @@ public class BewitchedModelEarmuffs extends BewitchedModel {
 
         setArmorPartVisibility();
     }
-
-	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-		modelRenderer.rotateAngleX = x;
-		modelRenderer.rotateAngleY = y;
-		modelRenderer.rotateAngleZ = z;
-	}
 }
