@@ -1,6 +1,7 @@
 package com.dipo33.bewitched.integration.waila;
 
 import com.dipo33.bewitched.block.BlockBewitchedCrops;
+import com.dipo33.bewitched.block.BlockBewitchedLog;
 import com.dipo33.bewitched.init.BewitchedBlocks;
 import com.dipo33.bewitched.init.BewitchedItems;
 
@@ -25,6 +26,8 @@ public class HUDHandlerBewitched implements IWailaDataProvider {
             return new ItemStack(BewitchedItems.ICY_NEEDLE.get());
         } else if (block instanceof BlockBewitchedCrops blockCrops) {
             return new ItemStack(blockCrops.func_149865_P());
+        } else if (block instanceof BlockBewitchedLog) {
+            return new ItemStack(block, 1, accessor.getMetadata() & 3);
         }
 
         return null;
@@ -70,5 +73,6 @@ public class HUDHandlerBewitched implements IWailaDataProvider {
         IWailaDataProvider provider = new HUDHandlerBewitched();
         registrar.registerStackProvider(provider, BlockBewitchedCrops.class);
         registrar.registerHeadProvider(provider, BlockBewitchedCrops.class);
+        registrar.registerStackProvider(provider, BlockBewitchedLog.class);
     }
 }
