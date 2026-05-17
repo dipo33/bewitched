@@ -31,6 +31,10 @@ tile.sapling.rowan.name=Rowan Sapling
 tile.sapling.alder.name=Alder Sapling
 tile.sapling.hawthorn.name=Hawthorn Sapling
 
+tile.log.rowan.name=Rowan Log
+tile.log.alder.name=Alder Log
+tile.log.hawthorn.name=Hawthorn Log
+
 itemGroup.bewitched=Bewitched
 
 bewitched.nei.mutation=Mutandis Mutations

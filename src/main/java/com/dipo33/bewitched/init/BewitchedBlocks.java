@@ -1,11 +1,12 @@
 package com.dipo33.bewitched.init;
 
 import com.dipo33.bewitched.Bewitched;
+import com.dipo33.bewitched.block.BlockBewitchedCrops;
 import com.dipo33.bewitched.block.BlockBewitchedSapling;
+import com.dipo33.bewitched.block.BlockMandrakeCrop;
 import com.dipo33.bewitched.block.BlockSmolderingPlant;
 import com.dipo33.bewitched.block.BlockSpanishMoss;
-import com.dipo33.bewitched.block.BlockBewitchedCrops;
-import com.dipo33.bewitched.block.BlockMandrakeCrop;
+import com.dipo33.bewitched.block.BlockBewitchedLog;
 import com.dipo33.bewitched.data.ObjectHolder;
 import com.dipo33.bewitched.items.ItemBewitchedMultiTexture;
 
@@ -39,6 +40,14 @@ public class BewitchedBlocks {
     public static final ObjectHolder<Block> GARLIC_CROP = new ObjectHolder<>(() ->
         new BlockBewitchedCrops(BewitchedItems.GARLIC, BewitchedItems.GARLIC)
             .setStages(6)
+    );
+
+    // Logs
+    public static final ObjectHolder<Block> LOG = new ObjectHolder<>(() ->
+        new BlockBewitchedLog()
+            .setCreativeTab(Bewitched.CREATIVE_TAB)
+            .setHardness(2.0F)
+            .setStepSound(Block.soundTypeWood)
     );
 
     // Plants
@@ -85,6 +94,8 @@ public class BewitchedBlocks {
         registerBlock(GLINT_WEED.get(), "glint_weed");
         registerBlock(EMBER_MOSS.get(), "ember_moss");
         registerBlock(SAPLING.get(), ItemBewitchedMultiTexture.class, "sapling");
+
+        registerBlock(LOG.get(), ItemBewitchedMultiTexture.class, "log");
     }
 
     /**
