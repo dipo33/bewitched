@@ -65,6 +65,10 @@ public class ClientSoundHandler {
                 return;
             }
 
+            if (event.result == null) {
+                return;
+            }
+
             event.result = applyMuffling(event);
         }
     }
