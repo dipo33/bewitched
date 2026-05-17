@@ -7,7 +7,7 @@ import com.dipo33.bewitched.block.BlockSpanishMoss;
 import com.dipo33.bewitched.block.BlockBewitchedCrops;
 import com.dipo33.bewitched.block.BlockMandrakeCrop;
 import com.dipo33.bewitched.data.ObjectHolder;
-import com.dipo33.bewitched.items.ItemSaplingMultiTexture;
+import com.dipo33.bewitched.items.ItemBewitchedMultiTexture;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -71,7 +71,7 @@ public class BewitchedBlocks {
     );
 
     /**
-     * Register the mod's crop blocks with the game registry.
+     * Register the mod's blocks with the game registry.
      */
     public static void registerBlocks() {
         registerBlock(BELLADONNA_CROP.get(), "belladonna");
@@ -84,7 +84,7 @@ public class BewitchedBlocks {
         registerBlock(SPANISH_MOSS.get(), "spanish_moss");
         registerBlock(GLINT_WEED.get(), "glint_weed");
         registerBlock(EMBER_MOSS.get(), "ember_moss");
-        registerBlock(SAPLING.get(), ItemSaplingMultiTexture.class, "sapling");
+        registerBlock(SAPLING.get(), ItemBewitchedMultiTexture.class, "sapling");
     }
 
     /**

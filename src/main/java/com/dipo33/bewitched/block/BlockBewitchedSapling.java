@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
+import com.dipo33.bewitched.items.ItemBewitchedMultiTexture;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -18,8 +19,12 @@ import net.minecraft.world.gen.feature.WorldGenMegaPineTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
-public class BlockBewitchedSapling extends BlockSapling {
+public class BlockBewitchedSapling extends BlockSapling implements ItemBewitchedMultiTexture.VariantBlock {
     public static final String[] VARIANTS = {"rowan", "alder", "hawthorn"};
+
+    public String[] getVariants() {
+        return VARIANTS;
+    }
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
