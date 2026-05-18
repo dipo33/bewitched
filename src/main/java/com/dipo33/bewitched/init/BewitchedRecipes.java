@@ -1,7 +1,6 @@
 package com.dipo33.bewitched.init;
 
 import com.dipo33.bewitched.block.BlockBewitchedPlanks;
-
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -38,6 +37,9 @@ public class BewitchedRecipes {
         Blocks.fire.setFireInfo(BewitchedBlocks.PLANKS.get(), 5, 20);
         Blocks.fire.setFireInfo(BewitchedBlocks.SLAB.get(), 5, 20);
         Blocks.fire.setFireInfo(BewitchedBlocks.SLAB_DOUBLE.get(), 5, 20);
+        Blocks.fire.setFireInfo(BewitchedBlocks.STAIRS_ROWAN.get(), 5, 20);
+        Blocks.fire.setFireInfo(BewitchedBlocks.STAIRS_ALDER.get(), 5, 20);
+        Blocks.fire.setFireInfo(BewitchedBlocks.STAIRS_HAWTHORN.get(), 1, 1);
     }
 
     private static void registerCraftingRecipes() {
@@ -67,6 +69,13 @@ public class BewitchedRecipes {
                 '#', new ItemStack(BewitchedBlocks.PLANKS.get(), 1, i)
             );
         }
+
+        GameRegistry.addShapedRecipe(new ItemStack(BewitchedBlocks.STAIRS_ROWAN.get(), 4),
+            "#  ", "## ", "###", '#', new ItemStack(BewitchedBlocks.PLANKS.get(), 1, 0));
+        GameRegistry.addShapedRecipe(new ItemStack(BewitchedBlocks.STAIRS_ALDER.get(), 4),
+            "#  ", "## ", "###", '#', new ItemStack(BewitchedBlocks.PLANKS.get(), 1, 1));
+        GameRegistry.addShapedRecipe(new ItemStack(BewitchedBlocks.STAIRS_HAWTHORN.get(), 4),
+            "#  ", "## ", "###", '#', new ItemStack(BewitchedBlocks.PLANKS.get(), 1, 2));
 
         GameRegistry.addShapedRecipe(
             new ItemStack(BewitchedItems.EARMUFFS.get(), 1),

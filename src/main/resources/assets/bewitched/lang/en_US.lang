@@ -43,6 +43,10 @@ tile.slab.rowan.name=Rowan Slab
 tile.slab.alder.name=Alder Slab
 tile.slab.hawthorn.name=Hawthorn Slab
 
+tile.stairs_rowan.name=Rowan Stairs
+tile.stairs_alder.name=Alder Stairs
+tile.stairs_hawthorn.name=Hawthorn Stairs
+
 itemGroup.bewitched=Bewitched
 
 bewitched.nei.mutation=Mutandis Mutations

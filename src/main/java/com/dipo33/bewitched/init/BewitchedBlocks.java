@@ -7,6 +7,7 @@ import com.dipo33.bewitched.block.BlockBewitchedPlanks;
 import com.dipo33.bewitched.block.BlockBewitchedSapling;
 import com.dipo33.bewitched.block.BlockBewitchedSlab;
 import com.dipo33.bewitched.block.BlockMandrakeCrop;
+import com.dipo33.bewitched.block.BlockBewitchedStairs;
 import com.dipo33.bewitched.block.BlockSmolderingPlant;
 import com.dipo33.bewitched.block.BlockSpanishMoss;
 import com.dipo33.bewitched.data.ObjectHolder;
@@ -51,6 +52,17 @@ public class BewitchedBlocks {
             .setCreativeTab(Bewitched.CREATIVE_TAB)
             .setHardness(2.0F)
             .setStepSound(Block.soundTypeWood)
+    );
+
+    // Stairs
+    public static final ObjectHolder<Block> STAIRS_ROWAN = new ObjectHolder<>(() ->
+        new BlockBewitchedStairs(PLANKS.get(), 0)
+    );
+    public static final ObjectHolder<Block> STAIRS_ALDER = new ObjectHolder<>(() ->
+        new BlockBewitchedStairs(PLANKS.get(), 1)
+    );
+    public static final ObjectHolder<Block> STAIRS_HAWTHORN = new ObjectHolder<>(() ->
+        new BlockBewitchedStairs(PLANKS.get(), 2)
     );
 
     // Slabs
@@ -121,6 +133,10 @@ public class BewitchedBlocks {
 
         registerBlock(PLANKS.get(), ItemBewitchedMultiTexture.class, "planks");
         registerBlock(LOG.get(), ItemBewitchedMultiTexture.class, "log");
+
+        registerBlock(STAIRS_ROWAN.get(), "stairs_rowan");
+        registerBlock(STAIRS_ALDER.get(), "stairs_alder");
+        registerBlock(STAIRS_HAWTHORN.get(), "stairs_hawthorn");
 
         BlockBewitchedSlab singleSlab = (BlockBewitchedSlab) SLAB.get();
         BlockBewitchedSlab doubleSlab = (BlockBewitchedSlab) SLAB_DOUBLE.get();
