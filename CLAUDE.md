@@ -17,6 +17,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 There are no unit tests.
 
+## Minecraft Decompiled Sources
+
+Decompiled Minecraft 1.7.10 sources are at `build/rfg/minecraft-src/java/`. Use these to look up vanilla class APIs (e.g. `BlockSlab`, `ItemSlab`) before implementing blocks that extend them.
+
 ## Specs
 
 The `specs/` folder is the authoritative source of truth for what this mod should implement. Before writing any code, read the relevant spec files. Implementation must match the spec exactly.
