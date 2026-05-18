@@ -2,14 +2,16 @@ package com.dipo33.bewitched.init;
 
 import com.dipo33.bewitched.Bewitched;
 import com.dipo33.bewitched.block.BlockBewitchedCrops;
+import com.dipo33.bewitched.block.BlockBewitchedLog;
+import com.dipo33.bewitched.block.BlockBewitchedPlanks;
 import com.dipo33.bewitched.block.BlockBewitchedSapling;
+import com.dipo33.bewitched.block.BlockBewitchedSlab;
 import com.dipo33.bewitched.block.BlockMandrakeCrop;
 import com.dipo33.bewitched.block.BlockSmolderingPlant;
 import com.dipo33.bewitched.block.BlockSpanishMoss;
-import com.dipo33.bewitched.block.BlockBewitchedLog;
-import com.dipo33.bewitched.block.BlockBewitchedPlanks;
 import com.dipo33.bewitched.data.ObjectHolder;
 import com.dipo33.bewitched.items.ItemBewitchedMultiTexture;
+import com.dipo33.bewitched.items.ItemBewitchedSlab;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -47,6 +49,19 @@ public class BewitchedBlocks {
     public static final ObjectHolder<Block> PLANKS = new ObjectHolder<>(() ->
         new BlockBewitchedPlanks()
             .setCreativeTab(Bewitched.CREATIVE_TAB)
+            .setHardness(2.0F)
+            .setStepSound(Block.soundTypeWood)
+    );
+
+    // Slabs
+    public static final ObjectHolder<Block> SLAB = new ObjectHolder<>(() ->
+        new BlockBewitchedSlab(false)
+            .setHardness(2.0F)
+            .setStepSound(Block.soundTypeWood)
+    );
+    public static final ObjectHolder<Block> SLAB_DOUBLE = new ObjectHolder<>(() ->
+        new BlockBewitchedSlab(true)
+            .setSingleSlab((BlockBewitchedSlab) SLAB.get())
             .setHardness(2.0F)
             .setStepSound(Block.soundTypeWood)
     );
@@ -106,6 +121,11 @@ public class BewitchedBlocks {
 
         registerBlock(PLANKS.get(), ItemBewitchedMultiTexture.class, "planks");
         registerBlock(LOG.get(), ItemBewitchedMultiTexture.class, "log");
+
+        BlockBewitchedSlab singleSlab = (BlockBewitchedSlab) SLAB.get();
+        BlockBewitchedSlab doubleSlab = (BlockBewitchedSlab) SLAB_DOUBLE.get();
+        registerBlock(singleSlab, ItemBewitchedSlab.class, "slab", singleSlab, doubleSlab);
+        registerBlock(doubleSlab, ItemBewitchedSlab.class, "slab_double", "slab", singleSlab, doubleSlab);
     }
 
     /**
@@ -117,14 +137,32 @@ public class BewitchedBlocks {
      *     the registry name used for the block's texture, unlocalized name, and registration
      */
     private static void registerBlock(Block block, String name) {
-        block.setBlockTextureName(Bewitched.MODID + ":" + name);
-        block.setBlockName(name);
-        GameRegistry.registerBlock(block, name);
+        registerBlock(block, name, name);
+    }
+
+    /**
+     * Configure a block's texture and unlocalized name, then register it with the GameRegistry.
+     *
+     * @param block
+     *     the block to configure and register
+     * @param registryName
+     *     the name used for GameRegistry registration and the block's texture
+     * @param blockName
+     *     the translation key set on the block (used for localization lookups)
+     */
+    private static void registerBlock(Block block, String registryName, String blockName) {
+        block.setBlockTextureName(Bewitched.MODID + ":" + registryName);
+        block.setBlockName(blockName);
+        GameRegistry.registerBlock(block, registryName);
     }
 
     private static void registerBlock(Block block, Class<? extends ItemBlock> itemclass, String name, Object... variants) {
-        block.setBlockTextureName(Bewitched.MODID + ":" + name);
-        block.setBlockName(name);
-        GameRegistry.registerBlock(block, itemclass, name, variants);
+        registerBlock(block, itemclass, name, name, variants);
+    }
+
+    private static void registerBlock(Block block, Class<? extends ItemBlock> itemclass, String registryName, String blockName, Object... variants) {
+        block.setBlockTextureName(Bewitched.MODID + ":" + registryName);
+        block.setBlockName(blockName);
+        GameRegistry.registerBlock(block, itemclass, registryName, variants);
     }
 }

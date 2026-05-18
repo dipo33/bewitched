@@ -7,6 +7,8 @@ import com.dipo33.bewitched.Bewitched;
 import com.dipo33.bewitched.Tags;
 import com.dipo33.bewitched.init.BewitchedBlocks;
 
+import net.minecraftforge.oredict.OreDictionary;
+
 import cpw.mods.fml.common.Optional;
 import net.minecraft.item.ItemStack;
 
@@ -24,6 +26,7 @@ public class NEIBewitchedConfig implements IConfigureNEI {
         API.hideItem(new ItemStack(BewitchedBlocks.MANDRAKE_CROP.get()));
         API.hideItem(new ItemStack(BewitchedBlocks.SNOW_WISP_CROP.get()));
         API.hideItem(new ItemStack(BewitchedBlocks.GARLIC_CROP.get()));
+        API.hideItem(new ItemStack(BewitchedBlocks.SLAB_DOUBLE.get(), 1, OreDictionary.WILDCARD_VALUE));
 
         API.registerRecipeHandler(new MutationNEIHandler());
         API.registerUsageHandler(new MutationNEIHandler());

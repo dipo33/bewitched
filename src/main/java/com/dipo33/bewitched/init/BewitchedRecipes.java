@@ -1,6 +1,7 @@
 package com.dipo33.bewitched.init;
 
 import com.dipo33.bewitched.block.BlockBewitchedPlanks;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -35,6 +36,8 @@ public class BewitchedRecipes {
     private static void registerFireBehavior() {
         Blocks.fire.setFireInfo(BewitchedBlocks.LOG.get(), 5, 5);
         Blocks.fire.setFireInfo(BewitchedBlocks.PLANKS.get(), 5, 20);
+        Blocks.fire.setFireInfo(BewitchedBlocks.SLAB.get(), 5, 20);
+        Blocks.fire.setFireInfo(BewitchedBlocks.SLAB_DOUBLE.get(), 5, 20);
     }
 
     private static void registerCraftingRecipes() {
@@ -57,6 +60,11 @@ public class BewitchedRecipes {
             GameRegistry.addShapelessRecipe(
                 new ItemStack(BewitchedBlocks.PLANKS.get(), 4, i),
                 new ItemStack(BewitchedBlocks.LOG.get(), 1, i)
+            );
+            GameRegistry.addShapedRecipe(
+                new ItemStack(BewitchedBlocks.SLAB.get(), 6, i),
+                "###",
+                '#', new ItemStack(BewitchedBlocks.PLANKS.get(), 1, i)
             );
         }
 
