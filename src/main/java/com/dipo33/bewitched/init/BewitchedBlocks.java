@@ -5,6 +5,7 @@ import com.dipo33.bewitched.block.BlockBewitchedSapling;
 import com.dipo33.bewitched.block.BlockSmolderingPlant;
 import com.dipo33.bewitched.block.BlockSpanishMoss;
 import com.dipo33.bewitched.block.BlockBewitchedCrops;
+import com.dipo33.bewitched.block.BlockMandrakeCrop;
 import com.dipo33.bewitched.data.ObjectHolder;
 import com.dipo33.bewitched.items.ItemSaplingMultiTexture;
 
@@ -29,10 +30,7 @@ public class BewitchedBlocks {
             .setStages(5)
             .setPlantType(EnumPlantType.Water)
     );
-    public static final ObjectHolder<Block> MANDRAKE_CROP = new ObjectHolder<>(() ->
-        new BlockBewitchedCrops(BewitchedItems.MANDRAKE_SEEDS, BewitchedItems.MANDRAKE_ROOT)
-            .setStages(5)
-    );
+    public static final ObjectHolder<Block> MANDRAKE_CROP = new ObjectHolder<>(BlockMandrakeCrop::new);
     public static final ObjectHolder<Block> SNOW_WISP_CROP = new ObjectHolder<>(() ->
         new BlockBewitchedCrops(BewitchedItems.SNOW_WISP_SEEDS, new ObjectHolder<>(() -> Items.snowball))
             .setStages(5)

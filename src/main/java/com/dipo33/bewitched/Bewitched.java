@@ -23,6 +23,9 @@ public class Bewitched {
     public static final String MOD_NAME = "Bewitched";
     public static final Logger LOG = LogManager.getLogger(MODID);
 
+    @Mod.Instance(MODID)
+    public static Bewitched instance;
+
     @SidedProxy(clientSide = "com.dipo33.bewitched.ClientProxy", serverSide = "com.dipo33.bewitched.CommonProxy")
     public static CommonProxy proxy;
 

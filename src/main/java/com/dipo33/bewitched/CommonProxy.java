@@ -1,10 +1,12 @@
 package com.dipo33.bewitched;
 
-import com.dipo33.bewitched.init.BewitchedBlocks;
 import com.dipo33.bewitched.config.Config;
+import com.dipo33.bewitched.init.BewitchedBlocks;
+import com.dipo33.bewitched.init.BewitchedEntities;
+import com.dipo33.bewitched.init.BewitchedItemArmorMaterials;
+import com.dipo33.bewitched.init.BewitchedItems;
 import com.dipo33.bewitched.init.BewitchedMutations;
 import com.dipo33.bewitched.init.BewitchedRecipes;
-import com.dipo33.bewitched.init.BewitchedItems;
 import com.dipo33.bewitched.items.SeedDrops;
 import com.dipo33.bewitched.network.BewitchedNetwork;
 import com.dipo33.bewitched.network.message.EffectPlayMsg;
@@ -28,7 +30,9 @@ public class CommonProxy {
      */
     public void preInit(FMLPreInitializationEvent event) {
         BewitchedBlocks.registerBlocks();
+        BewitchedItemArmorMaterials.addArmorMaterials();
         BewitchedItems.registerItems();
+        BewitchedEntities.registerEntities();
         BewitchedNetwork.register();
         this.registerClientMessages();
 

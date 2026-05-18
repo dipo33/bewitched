@@ -11,6 +11,9 @@ item.water_artichoke_globe.name=Water Artichoke Globe
 item.mandrake_root.name=Mandrake Root
 item.icy_needle.name=Icy Needle
 
+item.earmuffs.name=Earmuffs
+item.earmuffs.desc=Protection from Mandrakes
+
 item.mutandis.name=Mutandis
 item.mutandis_extremis.name=Mutandis Extremis
 
@@ -33,3 +36,5 @@ itemGroup.bewitched=Bewitched
 bewitched.nei.mutation=Mutandis Mutations
 bewitched.nei.mutation.chance=Chance for each possible result: %s
 bewitched.nei.mutation.flower_pot=This mutation occurs within a flower pot.
+
+entity.mandragora.name=Mandrake

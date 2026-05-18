@@ -2,6 +2,7 @@ package com.dipo33.bewitched.init;
 
 import com.dipo33.bewitched.Bewitched;
 import com.dipo33.bewitched.data.ObjectHolder;
+import com.dipo33.bewitched.items.armor.ItemEarmuffs;
 import com.dipo33.bewitched.items.ItemMutandis;
 import com.dipo33.bewitched.items.ItemWaterSeeds;
 
@@ -49,6 +50,11 @@ public class BewitchedItems {
         new Item().setCreativeTab(Bewitched.CREATIVE_TAB)
     );
 
+    // Wearables
+    public static final ObjectHolder<Item> EARMUFFS = new ObjectHolder<>(() ->
+        new ItemEarmuffs().setCreativeTab(Bewitched.CREATIVE_TAB)
+    );
+
     // Other
     public static final ObjectHolder<Item> MUTANDIS = new ObjectHolder<>(() ->
         new ItemMutandis().setCreativeTab(Bewitched.CREATIVE_TAB)
@@ -73,6 +79,8 @@ public class BewitchedItems {
         registerItem(WATER_ARTICHOKE_GLOBE.get(), "water_artichoke_globe");
         registerItem(MANDRAKE_ROOT.get(), "mandrake_root");
         registerItem(ICY_NEEDLE.get(), "icy_needle");
+
+        registerItem(EARMUFFS.get(), "earmuffs");
 
         registerItem(MUTANDIS.get(), "mutandis");
         registerItem(MUTANDIS_EXTREMIS.get(), "mutandis_extremis");
