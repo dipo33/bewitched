@@ -7,6 +7,7 @@ import com.dipo33.bewitched.block.BlockMandrakeCrop;
 import com.dipo33.bewitched.block.BlockSmolderingPlant;
 import com.dipo33.bewitched.block.BlockSpanishMoss;
 import com.dipo33.bewitched.block.BlockBewitchedLog;
+import com.dipo33.bewitched.block.BlockBewitchedPlanks;
 import com.dipo33.bewitched.data.ObjectHolder;
 import com.dipo33.bewitched.items.ItemBewitchedMultiTexture;
 
@@ -40,6 +41,14 @@ public class BewitchedBlocks {
     public static final ObjectHolder<Block> GARLIC_CROP = new ObjectHolder<>(() ->
         new BlockBewitchedCrops(BewitchedItems.GARLIC, BewitchedItems.GARLIC)
             .setStages(6)
+    );
+
+    // Planks
+    public static final ObjectHolder<Block> PLANKS = new ObjectHolder<>(() ->
+        new BlockBewitchedPlanks()
+            .setCreativeTab(Bewitched.CREATIVE_TAB)
+            .setHardness(2.0F)
+            .setStepSound(Block.soundTypeWood)
     );
 
     // Logs
@@ -95,6 +104,7 @@ public class BewitchedBlocks {
         registerBlock(EMBER_MOSS.get(), "ember_moss");
         registerBlock(SAPLING.get(), ItemBewitchedMultiTexture.class, "sapling");
 
+        registerBlock(PLANKS.get(), ItemBewitchedMultiTexture.class, "planks");
         registerBlock(LOG.get(), ItemBewitchedMultiTexture.class, "log");
     }
 

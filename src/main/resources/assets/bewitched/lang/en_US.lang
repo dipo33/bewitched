@@ -35,6 +35,10 @@ tile.log.rowan.name=Rowan Log
 tile.log.alder.name=Alder Log
 tile.log.hawthorn.name=Hawthorn Log
 
+tile.planks.rowan.name=Rowan Planks
+tile.planks.alder.name=Alder Planks
+tile.planks.hawthorn.name=Hawthorn Planks
+
 itemGroup.bewitched=Bewitched
 
 bewitched.nei.mutation=Mutandis Mutations

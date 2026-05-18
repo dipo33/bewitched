@@ -1,5 +1,6 @@
 package com.dipo33.bewitched.init;
 
+import com.dipo33.bewitched.block.BlockBewitchedPlanks;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -18,11 +19,13 @@ public class BewitchedRecipes {
 
     private static void registerOreDictEntries() {
         OreDictionary.registerOre("logWood", new ItemStack(BewitchedBlocks.LOG.get(), 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("plankWood", new ItemStack(BewitchedBlocks.PLANKS.get(), 1, OreDictionary.WILDCARD_VALUE));
     }
 
     private static void registerFuelHandlers() {
         GameRegistry.registerFuelHandler(fuel -> {
-            if (Block.getBlockFromItem(fuel.getItem()) == BewitchedBlocks.LOG.get()) {
+            Block block = Block.getBlockFromItem(fuel.getItem());
+            if (block == BewitchedBlocks.LOG.get() || block == BewitchedBlocks.PLANKS.get()) {
                 return 300;
             }
             return 0;
@@ -31,6 +34,7 @@ public class BewitchedRecipes {
 
     private static void registerFireBehavior() {
         Blocks.fire.setFireInfo(BewitchedBlocks.LOG.get(), 5, 5);
+        Blocks.fire.setFireInfo(BewitchedBlocks.PLANKS.get(), 5, 20);
     }
 
     private static void registerCraftingRecipes() {
@@ -48,6 +52,13 @@ public class BewitchedRecipes {
             BewitchedItems.MUTANDIS.get(),
             Items.nether_wart
         );
+
+        for (int i = 0; i < BlockBewitchedPlanks.VARIANTS.length; i++) {
+            GameRegistry.addShapelessRecipe(
+                new ItemStack(BewitchedBlocks.PLANKS.get(), 4, i),
+                new ItemStack(BewitchedBlocks.LOG.get(), 1, i)
+            );
+        }
 
         GameRegistry.addShapedRecipe(
             new ItemStack(BewitchedItems.EARMUFFS.get(), 1),
