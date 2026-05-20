@@ -1,8 +1,8 @@
 package com.dipo33.bewitched.init;
 
 import com.dipo33.bewitched.Bewitched;
-import com.dipo33.bewitched.block.BlockBewitchedAlderDoor;
 import com.dipo33.bewitched.block.BlockBewitchedCrops;
+import com.dipo33.bewitched.block.BlockBewitchedDoor;
 import com.dipo33.bewitched.block.BlockBewitchedLeaves;
 import com.dipo33.bewitched.block.BlockBewitchedLog;
 import com.dipo33.bewitched.block.BlockBewitchedPlanks;
@@ -93,7 +93,12 @@ public class BewitchedBlocks {
     );
 
     // Doors
-    public static final ObjectHolder<Block> ALDER_DOOR_BLOCK = new ObjectHolder<>(BlockBewitchedAlderDoor::new);
+    public static final ObjectHolder<Block> ALDER_DOOR_BLOCK = new ObjectHolder<>(() ->
+        new BlockBewitchedDoor(BewitchedItems.ALDER_DOOR)
+    );
+    public static final ObjectHolder<Block> CONCEALING_DOOR_BLOCK = new ObjectHolder<>(() ->
+        new BlockBewitchedDoor(BewitchedItems.CONCEALING_DOOR)
+    );
 
     // Plants
     public static final ObjectHolder<Block> SPANISH_MOSS = new ObjectHolder<>(() ->
@@ -154,6 +159,8 @@ public class BewitchedBlocks {
         registerBlock(doubleSlab, ItemBewitchedSlab.class, "slab_double", "slab", singleSlab, doubleSlab);
 
         registerBlock(ALDER_DOOR_BLOCK.get(), (Class<? extends ItemBlock>) null, "alder_door");
+        registerBlock(CONCEALING_DOOR_BLOCK.get(), null, "concealing_door", "doorWood");
+        CONCEALING_DOOR_BLOCK.get().setBlockTextureName("minecraft:door_wood");
     }
 
     /**

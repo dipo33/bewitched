@@ -1,9 +1,9 @@
 package com.dipo33.bewitched.block;
 
 import java.util.Random;
+import java.util.function.Supplier;
 
 import com.dipo33.bewitched.Bewitched;
-import com.dipo33.bewitched.init.BewitchedItems;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -15,13 +15,16 @@ import net.minecraft.item.Item;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockBewitchedAlderDoor extends BlockDoor {
+public class BlockBewitchedDoor extends BlockDoor {
 
-    public BlockBewitchedAlderDoor() {
+    private final Supplier<Item> itemSupplier;
+
+    public BlockBewitchedDoor(Supplier<Item> itemSupplier) {
         super(Material.wood);
         setHardness(3.0F);
         setStepSound(Block.soundTypeWood);
         setCreativeTab(Bewitched.CREATIVE_TAB);
+        this.itemSupplier = itemSupplier;
     }
 
     @Override
@@ -99,12 +102,12 @@ public class BlockBewitchedAlderDoor extends BlockDoor {
 
     @Override
     public Item getItemDropped(int meta, Random random, int fortune) {
-        return (meta & 8) != 0 ? null : BewitchedItems.ALDER_DOOR.get();
+        return (meta & 8) != 0 ? null : itemSupplier.get();
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public Item getItem(World world, int x, int y, int z) {
-        return BewitchedItems.ALDER_DOOR.get();
+        return itemSupplier.get();
     }
 }

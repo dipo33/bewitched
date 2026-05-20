@@ -1,6 +1,6 @@
 package com.dipo33.bewitched.items;
 
-import com.dipo33.bewitched.init.BewitchedBlocks;
+import java.util.function.Supplier;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,10 +10,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class ItemBewitchedAlderDoor extends Item {
+public class ItemBewitchedDoor extends Item {
 
-    public ItemBewitchedAlderDoor() {
+    private final Supplier<Block> blockSupplier;
+
+    public ItemBewitchedDoor(Supplier<Block> blockSupplier) {
         this.maxStackSize = 1;
+        this.blockSupplier = blockSupplier;
     }
 
     @Override
@@ -25,7 +28,7 @@ public class ItemBewitchedAlderDoor extends Item {
         if (!player.canPlayerEdit(x, y, z, side, stack) || !player.canPlayerEdit(x, y + 1, z, side, stack)) {
             return false;
         }
-        Block block = BewitchedBlocks.ALDER_DOOR_BLOCK.get();
+        Block block = blockSupplier.get();
         if (!block.canPlaceBlockAt(world, x, y, z)) {
             return false;
         }

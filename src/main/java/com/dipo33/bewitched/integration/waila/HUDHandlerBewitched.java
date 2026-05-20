@@ -1,6 +1,7 @@
 package com.dipo33.bewitched.integration.waila;
 
 import com.dipo33.bewitched.block.BlockBewitchedCrops;
+import com.dipo33.bewitched.block.BlockBewitchedDoor;
 import com.dipo33.bewitched.block.BlockBewitchedLeaves;
 import com.dipo33.bewitched.block.BlockBewitchedLog;
 import com.dipo33.bewitched.block.BlockBewitchedSlab;
@@ -15,6 +16,7 @@ import mcp.mobius.waila.api.IWailaRegistrar;
 import mcp.mobius.waila.overlay.DisplayUtil;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -34,6 +36,8 @@ public class HUDHandlerBewitched implements IWailaDataProvider {
             return new ItemStack(block, 1, accessor.getMetadata() & 7);
         } else if (block instanceof BlockBewitchedLeaves) {
             return new ItemStack(block, 1, accessor.getMetadata() & 3);
+        } else if (block == BewitchedBlocks.CONCEALING_DOOR_BLOCK.get()) {
+            return new ItemStack(Items.wooden_door);
         }
 
         return null;
@@ -82,5 +86,6 @@ public class HUDHandlerBewitched implements IWailaDataProvider {
         registrar.registerStackProvider(provider, BlockBewitchedLog.class);
         registrar.registerStackProvider(provider, BlockBewitchedSlab.class);
         registrar.registerStackProvider(provider, BlockBewitchedLeaves.class);
+        registrar.registerStackProvider(provider, BlockBewitchedDoor.class);
     }
 }

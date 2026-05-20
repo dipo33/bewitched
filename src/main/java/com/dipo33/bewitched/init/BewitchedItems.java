@@ -2,7 +2,7 @@ package com.dipo33.bewitched.init;
 
 import com.dipo33.bewitched.Bewitched;
 import com.dipo33.bewitched.data.ObjectHolder;
-import com.dipo33.bewitched.items.ItemBewitchedAlderDoor;
+import com.dipo33.bewitched.items.ItemBewitchedDoor;
 import com.dipo33.bewitched.items.ItemMutandis;
 import com.dipo33.bewitched.items.ItemWaterSeeds;
 import com.dipo33.bewitched.items.armor.ItemEarmuffs;
@@ -59,7 +59,10 @@ public class BewitchedItems {
 
     // Doors
     public static final ObjectHolder<Item> ALDER_DOOR = new ObjectHolder<>(() ->
-        new ItemBewitchedAlderDoor().setCreativeTab(Bewitched.CREATIVE_TAB)
+        new ItemBewitchedDoor(BewitchedBlocks.ALDER_DOOR_BLOCK).setCreativeTab(Bewitched.CREATIVE_TAB)
+    );
+    public static final ObjectHolder<Item> CONCEALING_DOOR = new ObjectHolder<>(() ->
+        new ItemBewitchedDoor(BewitchedBlocks.CONCEALING_DOOR_BLOCK).setCreativeTab(Bewitched.CREATIVE_TAB)
     );
 
     // Food
@@ -95,6 +98,7 @@ public class BewitchedItems {
         registerItem(EARMUFFS.get(), "earmuffs");
 
         registerItem(ALDER_DOOR.get(), "alder_door");
+        registerItem(CONCEALING_DOOR.get(), "concealing_door");
 
         registerItem(ROWAN_BERRIES.get(), "rowan_berries");
 
