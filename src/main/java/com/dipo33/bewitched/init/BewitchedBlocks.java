@@ -1,6 +1,7 @@
 package com.dipo33.bewitched.init;
 
 import com.dipo33.bewitched.Bewitched;
+import com.dipo33.bewitched.block.BlockBewitchedAlderDoor;
 import com.dipo33.bewitched.block.BlockBewitchedCrops;
 import com.dipo33.bewitched.block.BlockBewitchedLeaves;
 import com.dipo33.bewitched.block.BlockBewitchedLog;
@@ -91,6 +92,9 @@ public class BewitchedBlocks {
             .setStepSound(Block.soundTypeWood)
     );
 
+    // Doors
+    public static final ObjectHolder<Block> ALDER_DOOR_BLOCK = new ObjectHolder<>(BlockBewitchedAlderDoor::new);
+
     // Plants
     public static final ObjectHolder<Block> SPANISH_MOSS = new ObjectHolder<>(() ->
         new BlockSpanishMoss().setCreativeTab(Bewitched.CREATIVE_TAB)
@@ -148,6 +152,8 @@ public class BewitchedBlocks {
         BlockBewitchedSlab doubleSlab = (BlockBewitchedSlab) SLAB_DOUBLE.get();
         registerBlock(singleSlab, ItemBewitchedSlab.class, "slab", singleSlab, doubleSlab);
         registerBlock(doubleSlab, ItemBewitchedSlab.class, "slab_double", "slab", singleSlab, doubleSlab);
+
+        registerBlock(ALDER_DOOR_BLOCK.get(), (Class<? extends ItemBlock>) null, "alder_door");
     }
 
     /**

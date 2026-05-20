@@ -11,6 +11,8 @@ item.water_artichoke_globe.name=Water Artichoke Globe
 item.mandrake_root.name=Mandrake Root
 item.icy_needle.name=Icy Needle
 
+item.alder_door.name=Alder Wood Door
+
 item.rowan_berries.name=Rowan Berries
 
 item.earmuffs.name=Earmuffs
@@ -52,6 +54,8 @@ tile.slab.hawthorn.name=Hawthorn Slab
 tile.stairs_rowan.name=Rowan Stairs
 tile.stairs_alder.name=Alder Stairs
 tile.stairs_hawthorn.name=Hawthorn Stairs
+
+tile.alder_door.name=Alder Wood Door
 
 itemGroup.bewitched=Bewitched
 
