@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.dipo33.bewitched.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [],
+  "client": [
+    "MixinRenderGlobal"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

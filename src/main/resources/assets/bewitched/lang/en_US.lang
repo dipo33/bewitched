@@ -31,6 +31,10 @@ tile.sapling.rowan.name=Rowan Sapling
 tile.sapling.alder.name=Alder Sapling
 tile.sapling.hawthorn.name=Hawthorn Sapling
 
+tile.leaves.rowan.name=Rowan Leaves
+tile.leaves.alder.name=Alder Leaves
+tile.leaves.hawthorn.name=Hawthorn Leaves
+
 tile.log.rowan.name=Rowan Log
 tile.log.alder.name=Alder Log
 tile.log.hawthorn.name=Hawthorn Log

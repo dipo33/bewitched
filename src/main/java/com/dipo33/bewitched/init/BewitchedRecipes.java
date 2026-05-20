@@ -33,6 +33,7 @@ public class BewitchedRecipes {
     }
 
     private static void registerFireBehavior() {
+        Blocks.fire.setFireInfo(BewitchedBlocks.LEAVES.get(), 30, 60);
         Blocks.fire.setFireInfo(BewitchedBlocks.LOG.get(), 5, 5);
         Blocks.fire.setFireInfo(BewitchedBlocks.PLANKS.get(), 5, 20);
         Blocks.fire.setFireInfo(BewitchedBlocks.SLAB.get(), 5, 20);
