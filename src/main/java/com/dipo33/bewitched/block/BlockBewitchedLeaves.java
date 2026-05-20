@@ -2,6 +2,7 @@ package com.dipo33.bewitched.block;
 
 import com.dipo33.bewitched.Bewitched;
 import com.dipo33.bewitched.init.BewitchedBlocks;
+import com.dipo33.bewitched.init.BewitchedItems;
 import com.dipo33.bewitched.items.ItemBewitchedMultiTexture;
 
 import cpw.mods.fml.relauncher.Side;
@@ -11,7 +12,6 @@ import java.util.Random;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -98,9 +98,8 @@ public class BlockBewitchedLeaves extends BlockLeaves implements ItemBewitchedMu
 
     @Override
     protected void func_150124_c(World world, int x, int y, int z, int metadata, int chance) {
-        // TODO: Replace apple with Rowan Berries once implemented
         if ((metadata & 3) == 0 && world.rand.nextInt(chance) == 0) {
-            dropBlockAsItem(world, x, y, z, new ItemStack(Items.apple, 1, 0));
+            dropBlockAsItem(world, x, y, z, new ItemStack(BewitchedItems.ROWAN_BERRIES.get()));
         }
     }
 

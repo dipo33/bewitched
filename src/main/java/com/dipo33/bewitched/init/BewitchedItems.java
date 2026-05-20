@@ -2,13 +2,14 @@ package com.dipo33.bewitched.init;
 
 import com.dipo33.bewitched.Bewitched;
 import com.dipo33.bewitched.data.ObjectHolder;
-import com.dipo33.bewitched.items.armor.ItemEarmuffs;
 import com.dipo33.bewitched.items.ItemMutandis;
 import com.dipo33.bewitched.items.ItemWaterSeeds;
+import com.dipo33.bewitched.items.armor.ItemEarmuffs;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSeeds;
 
 public class BewitchedItems {
@@ -55,6 +56,11 @@ public class BewitchedItems {
         new ItemEarmuffs().setCreativeTab(Bewitched.CREATIVE_TAB)
     );
 
+    // Food
+    public static final ObjectHolder<Item> ROWAN_BERRIES = new ObjectHolder<>(() ->
+        new ItemFood(1, 6.0f, false).setCreativeTab(Bewitched.CREATIVE_TAB)
+    );
+
     // Other
     public static final ObjectHolder<Item> MUTANDIS = new ObjectHolder<>(() ->
         new ItemMutandis().setCreativeTab(Bewitched.CREATIVE_TAB)
@@ -81,6 +87,8 @@ public class BewitchedItems {
         registerItem(ICY_NEEDLE.get(), "icy_needle");
 
         registerItem(EARMUFFS.get(), "earmuffs");
+
+        registerItem(ROWAN_BERRIES.get(), "rowan_berries");
 
         registerItem(MUTANDIS.get(), "mutandis");
         registerItem(MUTANDIS_EXTREMIS.get(), "mutandis_extremis");
