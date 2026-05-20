@@ -37,9 +37,9 @@ tile.leaves.rowan.name=Rowan Leaves
 tile.leaves.alder.name=Alder Leaves
 tile.leaves.hawthorn.name=Hawthorn Leaves
 
-tile.log.rowan.name=Rowan Log
-tile.log.alder.name=Alder Log
-tile.log.hawthorn.name=Hawthorn Log
+tile.log.rowan.name=Rowan Wood
+tile.log.alder.name=Alder Wood
+tile.log.hawthorn.name=Hawthorn Wood
 
 tile.planks.rowan.name=Rowan Planks
 tile.planks.alder.name=Alder Planks
