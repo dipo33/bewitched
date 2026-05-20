@@ -58,4 +58,10 @@ Seeds reference their crop block and vice versa, so registration order matters: 
 
 ### Proxy Pattern
 
+The proxy exists to isolate client-only code from the server. `Minecraft`, rendering classes, and anything in `net.minecraft.client.*` **do not exist on a dedicated server** — referencing them in shared code causes a `NoClassDefFoundError` at class load time, even inside a guarded `if` branch. Any such code must live in `ClientProxy` or a `@SideOnly(CLIENT)` method.
+
 `CommonProxy` handles server-safe lifecycle hooks (`preInit`, `init`, `postInit`). `ClientProxy` overrides methods to register renderers, particle effects (`EffectRegistry`), sound muffling (`ClientSoundHandler`), and armor models.
+
+### Mixins
+
+Mixin classes live in `src/mixins/java/com/dipo33/bewitched/mixin/`. `src/main/resources/mixins.bewitched.json` declares which classes are active — the convention plugin does **not** auto-generate this file. Client-only mixins (targeting classes like `RenderGlobal`) go in the `"client"` array; common ones in `"mixins"`. Prefix injected method names with `bewitched$` to avoid collisions.
