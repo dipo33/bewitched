@@ -20,6 +20,15 @@ public class BewitchedRecipes {
     private static void registerOreDictEntries() {
         OreDictionary.registerOre("logWood", new ItemStack(BewitchedBlocks.LOG.get(), 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("plankWood", new ItemStack(BewitchedBlocks.PLANKS.get(), 1, OreDictionary.WILDCARD_VALUE));
+
+        OreDictionary.registerOre("slabWood", new ItemStack(BewitchedBlocks.SLAB.get(), 1, OreDictionary.WILDCARD_VALUE));
+
+        OreDictionary.registerOre("stairWood", BewitchedBlocks.STAIRS_ROWAN.get());
+        OreDictionary.registerOre("stairWood", BewitchedBlocks.STAIRS_ALDER.get());
+        OreDictionary.registerOre("stairWood", BewitchedBlocks.STAIRS_HAWTHORN.get());
+
+        OreDictionary.registerOre("treeLeaves", new ItemStack(BewitchedBlocks.LEAVES.get(), 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("treeSapling", new ItemStack(BewitchedBlocks.SAPLING.get(), 1, OreDictionary.WILDCARD_VALUE));
     }
 
     private static void registerFuelHandlers() {
