@@ -64,6 +64,9 @@ public class BewitchedItems {
     public static final ObjectHolder<Item> CONCEALING_DOOR = new ObjectHolder<>(() ->
         new ItemBewitchedDoor(BewitchedBlocks.CONCEALING_DOOR_BLOCK).setCreativeTab(Bewitched.CREATIVE_TAB)
     );
+    public static final ObjectHolder<Item> HAWTHORN_DOOR = new ObjectHolder<>(() ->
+        new ItemBewitchedDoor(BewitchedBlocks.HAWTHORN_DOOR_BLOCK).setCreativeTab(Bewitched.CREATIVE_TAB)
+    );
 
     // Food
     public static final ObjectHolder<Item> ROWAN_BERRIES = new ObjectHolder<>(() ->
@@ -99,6 +102,7 @@ public class BewitchedItems {
 
         registerItem(ALDER_DOOR.get(), "alder_door");
         registerItem(CONCEALING_DOOR.get(), "concealing_door");
+        registerItem(HAWTHORN_DOOR.get(), "hawthorn_door");
 
         registerItem(ROWAN_BERRIES.get(), "rowan_berries");
 

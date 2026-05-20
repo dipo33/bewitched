@@ -18,28 +18,34 @@ import net.minecraft.world.World;
 public class BlockBewitchedDoor extends BlockDoor {
 
     private final Supplier<Item> itemSupplier;
+    private final boolean emitsRedstone;
 
     public BlockBewitchedDoor(Supplier<Item> itemSupplier) {
+        this(itemSupplier, false);
+    }
+
+    public BlockBewitchedDoor(Supplier<Item> itemSupplier, boolean emitsRedstone) {
         super(Material.wood);
         setHardness(3.0F);
         setStepSound(Block.soundTypeWood);
         setCreativeTab(Bewitched.CREATIVE_TAB);
         this.itemSupplier = itemSupplier;
+        this.emitsRedstone = emitsRedstone;
     }
 
     @Override
     public boolean canProvidePower() {
-        return true;
+        return emitsRedstone;
     }
 
     @Override
     public int isProvidingWeakPower(IBlockAccess world, int x, int y, int z, int side) {
-        return func_150015_f(world, x, y, z) ? 15 : 0;
+        return (emitsRedstone && func_150015_f(world, x, y, z)) ? 15 : 0;
     }
 
     @Override
     public int isProvidingStrongPower(IBlockAccess world, int x, int y, int z, int side) {
-        return (side == 1 && func_150015_f(world, x, y, z)) ? 15 : 0;
+        return (emitsRedstone && side == 1 && func_150015_f(world, x, y, z)) ? 15 : 0;
     }
 
     @Override
@@ -60,8 +66,13 @@ public class BlockBewitchedDoor extends BlockDoor {
 
     @Override
     public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbor) {
-        int meta = world.getBlockMetadata(x, y, z);
+        if (!emitsRedstone) {
+            super.onNeighborBlockChange(world, x, y, z, neighbor);
+            return;
+        }
 
+        // Trap-style doors ignore redstone signals; only check structural integrity.
+        int meta = world.getBlockMetadata(x, y, z);
         if ((meta & 8) == 0) {
             boolean remove = false;
 

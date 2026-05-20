@@ -90,6 +90,9 @@ public class BewitchedRecipes {
         GameRegistry.addShapedRecipe(new ItemStack(BewitchedItems.ALDER_DOOR.get(), 1),
             "##", "##", "##", '#', new ItemStack(BewitchedBlocks.PLANKS.get(), 1, 1));
 
+        GameRegistry.addShapedRecipe(new ItemStack(BewitchedItems.HAWTHORN_DOOR.get(), 1),
+            "##", "##", "##", '#', new ItemStack(BewitchedBlocks.PLANKS.get(), 1, 2));
+
         GameRegistry.addShapedRecipe(new ItemStack(BewitchedItems.CONCEALING_DOOR.get(), 1),
             " O ",
             "OAO",

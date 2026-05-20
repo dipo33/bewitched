@@ -13,6 +13,7 @@ item.icy_needle.name=Icy Needle
 
 item.alder_door.name=Alder Wood Door
 item.concealing_door.name=Concealing Door
+item.hawthorn_door.name=Hawthorn Wood Door
 
 item.rowan_berries.name=Rowan Berries
 
@@ -57,6 +58,7 @@ tile.stairs_alder.name=Alder Stairs
 tile.stairs_hawthorn.name=Hawthorn Stairs
 
 tile.alder_door.name=Alder Wood Door
+tile.hawthorn_door.name=Hawthorn Wood Door
 
 itemGroup.bewitched=Bewitched
 

@@ -94,10 +94,13 @@ public class BewitchedBlocks {
 
     // Doors
     public static final ObjectHolder<Block> ALDER_DOOR_BLOCK = new ObjectHolder<>(() ->
-        new BlockBewitchedDoor(BewitchedItems.ALDER_DOOR)
+        new BlockBewitchedDoor(BewitchedItems.ALDER_DOOR, true)
     );
     public static final ObjectHolder<Block> CONCEALING_DOOR_BLOCK = new ObjectHolder<>(() ->
-        new BlockBewitchedDoor(BewitchedItems.CONCEALING_DOOR)
+        new BlockBewitchedDoor(BewitchedItems.CONCEALING_DOOR, true)
+    );
+    public static final ObjectHolder<Block> HAWTHORN_DOOR_BLOCK = new ObjectHolder<>(() ->
+        new BlockBewitchedDoor(BewitchedItems.HAWTHORN_DOOR)
     );
 
     // Plants
@@ -161,6 +164,7 @@ public class BewitchedBlocks {
         registerBlock(ALDER_DOOR_BLOCK.get(), (Class<? extends ItemBlock>) null, "alder_door");
         registerBlock(CONCEALING_DOOR_BLOCK.get(), null, "concealing_door", "doorWood");
         CONCEALING_DOOR_BLOCK.get().setBlockTextureName("minecraft:door_wood");
+        registerBlock(HAWTHORN_DOOR_BLOCK.get(), (Class<? extends ItemBlock>) null, "hawthorn_door");
     }
 
     /**
