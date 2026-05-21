@@ -11,6 +11,9 @@ item.water_artichoke_globe.name=Water Artichoke Globe
 item.mandrake_root.name=Mandrake Root
 item.icy_needle.name=Icy Needle
 
+item.rowan_door.name=Rowan Wood Door
+item.rowan_door_key.name=Rowan Door Key
+item.rowan_keyring.name=Rowan Keyring
 item.alder_door.name=Alder Wood Door
 item.concealing_door.name=Concealing Door
 item.hawthorn_door.name=Hawthorn Wood Door
@@ -57,6 +60,7 @@ tile.stairs_rowan.name=Rowan Stairs
 tile.stairs_alder.name=Alder Stairs
 tile.stairs_hawthorn.name=Hawthorn Stairs
 
+tile.rowan_door.name=Rowan Wood Door
 tile.alder_door.name=Alder Wood Door
 tile.hawthorn_door.name=Hawthorn Wood Door
 

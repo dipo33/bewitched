@@ -3,7 +3,10 @@ package com.dipo33.bewitched.init;
 import com.dipo33.bewitched.Bewitched;
 import com.dipo33.bewitched.data.ObjectHolder;
 import com.dipo33.bewitched.items.ItemBewitchedDoor;
+import com.dipo33.bewitched.items.ItemBewitchedRowanDoor;
 import com.dipo33.bewitched.items.ItemMutandis;
+import com.dipo33.bewitched.items.ItemRowanDoorKey;
+import com.dipo33.bewitched.items.ItemRowanKeyring;
 import com.dipo33.bewitched.items.ItemWaterSeeds;
 import com.dipo33.bewitched.items.armor.ItemEarmuffs;
 
@@ -58,6 +61,15 @@ public class BewitchedItems {
     );
 
     // Doors
+    public static final ObjectHolder<Item> ROWAN_DOOR = new ObjectHolder<>(() ->
+        new ItemBewitchedRowanDoor().setCreativeTab(Bewitched.CREATIVE_TAB)
+    );
+    public static final ObjectHolder<Item> ROWAN_DOOR_KEY = new ObjectHolder<>(() ->
+        new ItemRowanDoorKey().setCreativeTab(Bewitched.CREATIVE_TAB)
+    );
+    public static final ObjectHolder<Item> ROWAN_KEYRING = new ObjectHolder<>(() ->
+        new ItemRowanKeyring().setCreativeTab(Bewitched.CREATIVE_TAB)
+    );
     public static final ObjectHolder<Item> ALDER_DOOR = new ObjectHolder<>(() ->
         new ItemBewitchedDoor(BewitchedBlocks.ALDER_DOOR_BLOCK).setCreativeTab(Bewitched.CREATIVE_TAB)
     );
@@ -100,6 +112,9 @@ public class BewitchedItems {
 
         registerItem(EARMUFFS.get(), "earmuffs");
 
+        registerItem(ROWAN_DOOR.get(), "rowan_door");
+        registerItem(ROWAN_DOOR_KEY.get(), "rowan_door_key");
+        registerItem(ROWAN_KEYRING.get(), "rowan_keyring");
         registerItem(ALDER_DOOR.get(), "alder_door");
         registerItem(CONCEALING_DOOR.get(), "concealing_door");
         registerItem(HAWTHORN_DOOR.get(), "hawthorn_door");

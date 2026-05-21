@@ -6,6 +6,7 @@ import com.dipo33.bewitched.block.BlockBewitchedDoor;
 import com.dipo33.bewitched.block.BlockBewitchedLeaves;
 import com.dipo33.bewitched.block.BlockBewitchedLog;
 import com.dipo33.bewitched.block.BlockBewitchedPlanks;
+import com.dipo33.bewitched.block.BlockBewitchedRowanDoor;
 import com.dipo33.bewitched.block.BlockBewitchedSapling;
 import com.dipo33.bewitched.block.BlockBewitchedSlab;
 import com.dipo33.bewitched.block.BlockBewitchedStairs;
@@ -93,6 +94,7 @@ public class BewitchedBlocks {
     );
 
     // Doors
+    public static final ObjectHolder<Block> ROWAN_DOOR_BLOCK = new ObjectHolder<>(BlockBewitchedRowanDoor::new);
     public static final ObjectHolder<Block> ALDER_DOOR_BLOCK = new ObjectHolder<>(() ->
         new BlockBewitchedDoor(BewitchedItems.ALDER_DOOR, true)
     );
@@ -161,6 +163,7 @@ public class BewitchedBlocks {
         registerBlock(singleSlab, ItemBewitchedSlab.class, "slab", singleSlab, doubleSlab);
         registerBlock(doubleSlab, ItemBewitchedSlab.class, "slab_double", "slab", singleSlab, doubleSlab);
 
+        registerBlock(ROWAN_DOOR_BLOCK.get(), (Class<? extends ItemBlock>) null, "rowan_door");
         registerBlock(ALDER_DOOR_BLOCK.get(), (Class<? extends ItemBlock>) null, "alder_door");
         registerBlock(CONCEALING_DOOR_BLOCK.get(), null, "concealing_door", "doorWood");
         CONCEALING_DOOR_BLOCK.get().setBlockTextureName("minecraft:door_wood");

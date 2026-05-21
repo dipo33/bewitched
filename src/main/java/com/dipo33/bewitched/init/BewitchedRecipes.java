@@ -1,11 +1,13 @@
 package com.dipo33.bewitched.init;
 
 import com.dipo33.bewitched.block.BlockBewitchedPlanks;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class BewitchedRecipes {
@@ -53,6 +55,12 @@ public class BewitchedRecipes {
     }
 
     private static void registerCraftingRecipes() {
+        GameRegistry.addShapedRecipe(new ItemStack(BewitchedItems.ROWAN_DOOR.get(), 1),
+            "##", "##", "##", '#', new ItemStack(BewitchedBlocks.PLANKS.get(), 1, 0));
+
+        // Rowan keyring: key+key or keyring+key
+        CraftingManager.getInstance().getRecipeList().add(new RecipeRowanKeyring());
+
         // TODO: Temporary recipe until cauldron recipes are implemented
         GameRegistry.addShapelessRecipe(
             new ItemStack(BewitchedItems.MUTANDIS.get(), 6),
