@@ -1,51 +1,28 @@
 package com.dipo33.bewitched.block;
 
-import java.util.Random;
-import java.util.function.Supplier;
-
 import com.dipo33.bewitched.Bewitched;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import java.util.Random;
+import java.util.function.Supplier;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockBewitchedDoor extends BlockDoor {
 
     private final Supplier<Item> itemSupplier;
-    private final boolean emitsRedstone;
 
     public BlockBewitchedDoor(Supplier<Item> itemSupplier) {
-        this(itemSupplier, false);
-    }
-
-    public BlockBewitchedDoor(Supplier<Item> itemSupplier, boolean emitsRedstone) {
         super(Material.wood);
         setHardness(3.0F);
         setStepSound(Block.soundTypeWood);
         setCreativeTab(Bewitched.CREATIVE_TAB);
         this.itemSupplier = itemSupplier;
-        this.emitsRedstone = emitsRedstone;
-    }
-
-    @Override
-    public boolean canProvidePower() {
-        return emitsRedstone;
-    }
-
-    @Override
-    public int isProvidingWeakPower(IBlockAccess world, int x, int y, int z, int side) {
-        return (emitsRedstone && func_150015_f(world, x, y, z)) ? 15 : 0;
-    }
-
-    @Override
-    public int isProvidingStrongPower(IBlockAccess world, int x, int y, int z, int side) {
-        return (emitsRedstone && side == 1 && func_150015_f(world, x, y, z)) ? 15 : 0;
     }
 
     @Override
@@ -64,14 +41,7 @@ public class BlockBewitchedDoor extends BlockDoor {
         return true;
     }
 
-    @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbor) {
-        if (!emitsRedstone) {
-            super.onNeighborBlockChange(world, x, y, z, neighbor);
-            return;
-        }
-
-        // Trap-style doors ignore redstone signals; only check structural integrity.
+    protected void onNeighborBlockChangeStructuralOnly(World world, int x, int y, int z, Block neighbor) {
         int meta = world.getBlockMetadata(x, y, z);
         if ((meta & 8) == 0) {
             boolean remove = false;
@@ -98,7 +68,7 @@ public class BlockBewitchedDoor extends BlockDoor {
             }
 
             if (neighbor != this) {
-                onNeighborBlockChange(world, x, y - 1, z, neighbor);
+                onNeighborBlockChangeStructuralOnly(world, x, y - 1, z, neighbor);
             }
         }
     }

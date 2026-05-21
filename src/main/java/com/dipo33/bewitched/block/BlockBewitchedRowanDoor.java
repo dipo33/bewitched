@@ -18,7 +18,7 @@ import net.minecraftforge.event.world.BlockEvent;
 public class BlockBewitchedRowanDoor extends BlockBewitchedDoor {
 
     public BlockBewitchedRowanDoor() {
-        super(BewitchedItems.ROWAN_DOOR, false);
+        super(BewitchedItems.ROWAN_DOOR);
         setHardness(5.0F);
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -35,31 +35,7 @@ public class BlockBewitchedRowanDoor extends BlockBewitchedDoor {
 
     @Override
     public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbor) {
-        int meta = world.getBlockMetadata(x, y, z);
-        if ((meta & 8) == 0) {
-            boolean remove = false;
-            if (world.getBlock(x, y + 1, z) != this) {
-                world.setBlockToAir(x, y, z);
-                remove = true;
-            }
-            if (!World.doesBlockHaveSolidTopSurface(world, x, y - 1, z)) {
-                world.setBlockToAir(x, y, z);
-                remove = true;
-                if (world.getBlock(x, y + 1, z) == this) {
-                    world.setBlockToAir(x, y + 1, z);
-                }
-            }
-            if (remove && !world.isRemote) {
-                dropBlockAsItem(world, x, y, z, meta, 0);
-            }
-        } else {
-            if (world.getBlock(x, y - 1, z) != this) {
-                world.setBlockToAir(x, y, z);
-            }
-            if (neighbor != this) {
-                onNeighborBlockChange(world, x, y - 1, z, neighbor);
-            }
-        }
+        onNeighborBlockChangeStructuralOnly(world, x, y, z, neighbor);
     }
 
     @Override

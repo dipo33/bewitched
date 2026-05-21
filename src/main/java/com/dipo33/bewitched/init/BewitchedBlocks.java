@@ -6,6 +6,7 @@ import com.dipo33.bewitched.block.BlockBewitchedDoor;
 import com.dipo33.bewitched.block.BlockBewitchedLeaves;
 import com.dipo33.bewitched.block.BlockBewitchedLog;
 import com.dipo33.bewitched.block.BlockBewitchedPlanks;
+import com.dipo33.bewitched.block.BlockBewitchedRedstoneDoor;
 import com.dipo33.bewitched.block.BlockBewitchedRowanDoor;
 import com.dipo33.bewitched.block.BlockBewitchedSapling;
 import com.dipo33.bewitched.block.BlockBewitchedSlab;
@@ -96,10 +97,10 @@ public class BewitchedBlocks {
     // Doors
     public static final ObjectHolder<Block> ROWAN_DOOR_BLOCK = new ObjectHolder<>(BlockBewitchedRowanDoor::new);
     public static final ObjectHolder<Block> ALDER_DOOR_BLOCK = new ObjectHolder<>(() ->
-        new BlockBewitchedDoor(BewitchedItems.ALDER_DOOR, true)
+        new BlockBewitchedRedstoneDoor(BewitchedItems.ALDER_DOOR)
     );
     public static final ObjectHolder<Block> CONCEALING_DOOR_BLOCK = new ObjectHolder<>(() ->
-        new BlockBewitchedDoor(BewitchedItems.CONCEALING_DOOR, true)
+        new BlockBewitchedRedstoneDoor(BewitchedItems.CONCEALING_DOOR)
     );
     public static final ObjectHolder<Block> HAWTHORN_DOOR_BLOCK = new ObjectHolder<>(() ->
         new BlockBewitchedDoor(BewitchedItems.HAWTHORN_DOOR)
