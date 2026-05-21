@@ -28,6 +28,13 @@ public class ItemRowanDoorKey extends Item {
         return stack;
     }
 
+    public static boolean sameTarget(NBTTagCompound a, NBTTagCompound b) {
+        return a.getInteger("x") == b.getInteger("x")
+            && a.getInteger("y") == b.getInteger("y")
+            && a.getInteger("z") == b.getInteger("z")
+            && a.getInteger("dim") == b.getInteger("dim");
+    }
+
     public static boolean matches(ItemStack stack, int x, int y, int z, int dimensionId) {
         NBTTagCompound nbt = stack.getTagCompound();
         if (nbt == null) {

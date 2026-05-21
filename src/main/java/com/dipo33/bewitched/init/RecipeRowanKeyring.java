@@ -14,22 +14,32 @@ public class RecipeRowanKeyring implements IRecipe {
 
     @Override
     public boolean matches(InventoryCrafting inventory, World world) {
-        int keyringCount = 0;
-        int keyCount = 0;
+        ItemStack keyring = null;
+        List<ItemStack> keys = new ArrayList<>();
         for (int i = 0; i < inventory.getSizeInventory(); i++) {
             ItemStack slot = inventory.getStackInSlot(i);
             if (slot == null) {
                 continue;
             }
             if (slot.getItem() instanceof ItemRowanKeyring) {
-                keyringCount++;
+                if (keyring != null) {
+                    return false;
+                }
+                keyring = slot;
             } else if (slot.getItem() instanceof ItemRowanDoorKey && slot.getTagCompound() != null) {
-                keyCount++;
+                keys.add(slot);
             } else {
                 return false;
             }
         }
-        return (keyringCount == 1 && keyCount == 1) || (keyringCount == 0 && keyCount == 2);
+        if (keyring == null && keys.size() == 2) {
+            return !ItemRowanDoorKey.sameTarget(keys.get(0).getTagCompound(), keys.get(1).getTagCompound());
+        }
+        if (keyring != null && keys.size() == 1) {
+            var keyNbt = keys.get(0).getTagCompound();
+            return !ItemRowanKeyring.matches(keyring, keyNbt.getInteger("x"), keyNbt.getInteger("y"), keyNbt.getInteger("z"), keyNbt.getInteger("dim"));
+        }
+        return false;
     }
 
     @Override
