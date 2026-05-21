@@ -39,6 +39,9 @@ public class BewitchedRecipes {
             if (block == BewitchedBlocks.LOG.get() || block == BewitchedBlocks.PLANKS.get()) {
                 return 300;
             }
+            if (block == BewitchedBlocks.SAPLING.get()) {
+                return 100;
+            }
             return 0;
         });
     }

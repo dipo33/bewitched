@@ -58,6 +58,11 @@ public class BlockBewitchedSapling extends BlockSapling implements ItemBewitched
     }
 
     @Override
+    public boolean func_149852_a(final World world, final Random random, final int x, final int y, final int z) {
+        return random.nextFloat() < 0.75f;
+    }
+
+    @Override
     public void func_149878_d(final World world, final int x, final int y, final int z, final Random rng) {
         if (!TerrainGen.saplingGrowTree(world, rng, x, y, z)) {
             return;
