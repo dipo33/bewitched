@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.DimensionManager;
 
 public class ItemRowanDoorKey extends Item {
 
@@ -16,14 +17,13 @@ public class ItemRowanDoorKey extends Item {
         this.maxStackSize = 1;
     }
 
-    public static ItemStack create(int x, int y, int z, int dimensionId, String dimensionName) {
+    public static ItemStack create(int x, int y, int z, int dimensionId) {
         ItemStack stack = new ItemStack(BewitchedItems.ROWAN_DOOR_KEY.get());
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setInteger("x", x);
         nbt.setInteger("y", y);
         nbt.setInteger("z", z);
         nbt.setInteger("dim", dimensionId);
-        nbt.setString("dimName", dimensionName);
         stack.setTagCompound(nbt);
         return stack;
     }
@@ -60,7 +60,13 @@ public class ItemRowanDoorKey extends Item {
         int x = nbt.getInteger("x");
         int y = nbt.getInteger("y");
         int z = nbt.getInteger("z");
-        String dimName = nbt.getString("dimName");
-        return (dimName != null && !dimName.isEmpty()) ? dimName + ": " + x + ", " + y + ", " + z : x + ", " + y + ", " + z;
+        int dim = nbt.getInteger("dim");
+        String dimName;
+        try {
+            dimName = DimensionManager.getProvider(dim).getDimensionName();
+        } catch (Exception e) {
+            dimName = "dim " + dim;
+        }
+        return dimName + ": " + x + ", " + y + ", " + z;
     }
 }

@@ -18,7 +18,7 @@ public class ItemBewitchedRowanDoor extends ItemBewitchedDoor {
         boolean placed = super.onItemUse(stack, player, world, x, y, z, side, subX, subY, subZ);
         if (placed && !world.isRemote) {
             int doorBottomY = y + 1;
-            ItemStack key = ItemRowanDoorKey.create(x, doorBottomY, z, world.provider.dimensionId, world.provider.getDimensionName());
+            ItemStack key = ItemRowanDoorKey.create(x, doorBottomY, z, world.provider.dimensionId);
             EntityItem keyEntity = new EntityItem(world, player.posX, player.posY + 0.5, player.posZ, key);
             keyEntity.delayBeforeCanPickup = 10;
             world.spawnEntityInWorld(keyEntity);
