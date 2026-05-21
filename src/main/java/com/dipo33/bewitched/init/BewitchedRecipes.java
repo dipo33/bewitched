@@ -58,8 +58,8 @@ public class BewitchedRecipes {
         GameRegistry.addShapedRecipe(new ItemStack(BewitchedItems.ROWAN_DOOR.get(), 1),
             "##", "##", "##", '#', new ItemStack(BewitchedBlocks.PLANKS.get(), 1, 0));
 
-        // Rowan keyring: key+key or keyring+key
         CraftingManager.getInstance().getRecipeList().add(new RecipeRowanKeyring());
+        CraftingManager.getInstance().getRecipeList().add(new RecipeRowanKeyringAdd());
 
         // TODO: Temporary recipe until cauldron recipes are implemented
         GameRegistry.addShapelessRecipe(
