@@ -62,7 +62,7 @@ public class BlockBewitchedLog extends BlockLog implements ItemBewitchedMultiTex
 
     @Override
     public int getFlammability(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
-        return isHawthorn(world.getBlockMetadata(x, y, z)) ? 1 : 5;
+        return isHawthorn(world.getBlockMetadata(x, y, z)) ? 0 : 5;
     }
 
     @Override
