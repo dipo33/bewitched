@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import com.dipo33.bewitched.worldgen.WorldGenHawthornTree;
 import net.minecraft.world.gen.feature.WorldGenForest;
 import net.minecraft.world.gen.feature.WorldGenMegaJungle;
 import net.minecraft.world.gen.feature.WorldGenMegaPineTree;
@@ -80,7 +81,7 @@ public class BlockBewitchedSapling extends BlockSapling implements ItemBewitched
                 gen = new WorldGenMegaPineTree(false, true);
                 break;
             case 2:
-                gen = new WorldGenMegaJungle(true, 10, 20, 3, 3);
+                gen = new WorldGenHawthornTree();
                 break;
             default:
                 return;

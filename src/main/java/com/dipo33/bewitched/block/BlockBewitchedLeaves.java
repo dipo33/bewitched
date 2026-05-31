@@ -110,6 +110,6 @@ public class BlockBewitchedLeaves extends BlockLeaves implements ItemBewitchedMu
 
     @Override
     public int getFireSpreadSpeed(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
-        return 30;
+        return 300;
     }
 }
