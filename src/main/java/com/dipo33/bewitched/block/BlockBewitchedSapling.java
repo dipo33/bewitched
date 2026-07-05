@@ -13,10 +13,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import com.dipo33.bewitched.worldgen.WorldGenAlderTree;
 import com.dipo33.bewitched.worldgen.WorldGenHawthornTree;
 import net.minecraft.world.gen.feature.WorldGenForest;
-import net.minecraft.world.gen.feature.WorldGenMegaJungle;
-import net.minecraft.world.gen.feature.WorldGenMegaPineTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
@@ -73,12 +72,12 @@ public class BlockBewitchedSapling extends BlockSapling implements ItemBewitched
         WorldGenerator gen;
 
         switch (meta) {
-            // TODO: Grow actual correct trees
+            // TODO: Grow actual correct rowan tree
             case 0:
                 gen = new WorldGenForest(true, false);
                 break;
             case 1:
-                gen = new WorldGenMegaPineTree(false, true);
+                gen = new WorldGenAlderTree();
                 break;
             case 2:
                 gen = new WorldGenHawthornTree();
