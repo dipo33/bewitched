@@ -15,7 +15,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import com.dipo33.bewitched.worldgen.WorldGenAlderTree;
 import com.dipo33.bewitched.worldgen.WorldGenHawthornTree;
-import net.minecraft.world.gen.feature.WorldGenForest;
+import com.dipo33.bewitched.worldgen.WorldGenRowanTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
@@ -74,7 +74,7 @@ public class BlockBewitchedSapling extends BlockSapling implements ItemBewitched
         switch (meta) {
             // TODO: Grow actual correct rowan tree
             case 0:
-                gen = new WorldGenForest(true, false);
+                gen = new WorldGenRowanTree();
                 break;
             case 1:
                 gen = new WorldGenAlderTree();
