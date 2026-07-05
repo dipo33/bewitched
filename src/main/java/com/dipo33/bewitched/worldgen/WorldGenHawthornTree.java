@@ -29,6 +29,9 @@ import com.dipo33.bewitched.init.BewitchedBlocks;
  *   <li>wrap — any log face still exposed to air gets a leaf, so no branch wood is
  *       ever visible from outside; only the trunk column below the crown stays bare</li>
  * </ol>
+ * Before anything is built, a vanilla-style clearance column around the trunk is
+ * checked; the write phase then replaces only air and leaves, exactly like vanilla
+ * tree generation.
  */
 public class WorldGenHawthornTree extends WorldGenAbstractTree {
 
@@ -62,6 +65,11 @@ public class WorldGenHawthornTree extends WorldGenAbstractTree {
     private static final float BUMP_CHANCE = 0.25f;
     // Layers narrower than this keep their center on the trunk so it stays covered
     private static final double MIN_JITTER_RADIUS = 2.5;
+
+    // Space check before growing (vanilla-style): square radius around the trunk
+    // column that must be free of non-replaceable blocks
+    private static final int TRUNK_CLEARANCE_RADIUS = 0;
+    private static final int CROWN_CLEARANCE_RADIUS = 2;
 
     // Cardinal and diagonal directions kept separate so primary arms can be staggered
     // across two Y levels, preventing bark-to-bark contacts between adjacent arms.
@@ -127,15 +135,22 @@ public class WorldGenHawthornTree extends WorldGenAbstractTree {
         int w1 = 2 * h + W1_MIN_BONUS + rng.nextInt(W1_RAND_RANGE);
         int w2 = 2 * h + W2_MIN_BONUS + rng.nextInt(W2_RAND_RANGE);
 
+        int crownBase = y + CROWN_BASE_Y - 1;
+        int crownTip = y + h - 1 + hc;
+        int totalLayers = h + hc - CROWN_BASE_Y + 1;
+
+        if (y < 1 || crownTip + 1 > 256) {
+            return false;
+        }
+
         Block soil = world.getBlock(x, y - 1, z);
         if (!soil.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, (BlockSapling) Blocks.sapling)) {
             return false;
         }
+        if (!hasSpaceToGrow(world, x, y, z, crownBase, crownTip)) {
+            return false;
+        }
         soil.onPlantGrow(world, x, y - 1, z, x, y, z);
-
-        int crownBase = y + CROWN_BASE_Y - 1;
-        int crownTip = y + h - 1 + hc;
-        int totalLayers = h + hc - CROWN_BASE_Y + 1;
 
         double[] rxArr = new double[totalLayers];
         double[] rzArr = new double[totalLayers];
@@ -218,6 +233,28 @@ public class WorldGenHawthornTree extends WorldGenAbstractTree {
         return true;
     }
 
+    /**
+     * Vanilla-style space check: a narrow column around the trunk (radius
+     * {@link #TRUNK_CLEARANCE_RADIUS} below the crown, {@link #CROWN_CLEARANCE_RADIUS}
+     * within it) must contain only replaceable blocks — air, leaves, wood, plants,
+     * dirt/grass (see {@link WorldGenAbstractTree#isReplaceable}). Deliberately much
+     * smaller than the final crown, matching how vanilla trees only probe near the trunk.
+     */
+    private boolean hasSpaceToGrow(World world, int x, int y, int z, int crownBase, int crownTip) {
+        for (int by = y; by <= crownTip; by++) {
+            int radius = by < crownBase ? TRUNK_CLEARANCE_RADIUS : CROWN_CLEARANCE_RADIUS;
+            for (int bx = x - radius; bx <= x + radius; bx++) {
+                for (int bz = z - radius; bz <= z + radius; bz++) {
+                    if (!isReplaceable(world, bx, by, bz)) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    // Same rule vanilla WorldGenTrees uses when placing logs and leaves
     private boolean canReplace(World world, int x, int y, int z) {
         Block b = world.getBlock(x, y, z);
         return b.isAir(world, x, y, z) || b.isLeaves(world, x, y, z);
