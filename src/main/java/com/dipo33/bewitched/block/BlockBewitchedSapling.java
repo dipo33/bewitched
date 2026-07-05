@@ -72,7 +72,6 @@ public class BlockBewitchedSapling extends BlockSapling implements ItemBewitched
         WorldGenerator gen;
 
         switch (meta) {
-            // TODO: Grow actual correct rowan tree
             case 0:
                 gen = new WorldGenRowanTree();
                 break;
