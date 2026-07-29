@@ -1,10 +1,13 @@
 package com.dipo33.bewitched;
 
 import com.dipo33.bewitched.client.effect.EffectRegistry;
+import com.dipo33.bewitched.client.effect.entity.render.RenderEnt;
 import com.dipo33.bewitched.client.effect.entity.render.RenderMandrake;
 import com.dipo33.bewitched.client.model.ArmorModelRegistry;
 import com.dipo33.bewitched.client.sound.ClientSoundHandler;
+import com.dipo33.bewitched.entity.EntityEnt;
 import com.dipo33.bewitched.entity.EntityMandrake;
+import com.dipo33.bewitched.entity.model.ModelEntAnimated;
 import com.dipo33.bewitched.entity.model.ModelMandrake;
 import com.dipo33.bewitched.network.BewitchedNetwork;
 import com.dipo33.bewitched.network.handler.EffectPlayMsgHandler;
@@ -49,6 +52,10 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(
             EntityMandrake.class,
             new RenderMandrake(new ModelMandrake(), 0.5F)
+        );
+        RenderingRegistry.registerEntityRenderingHandler(
+            EntityEnt.class,
+            new RenderEnt(new ModelEntAnimated(), 0.8F)
         );
     }
 }

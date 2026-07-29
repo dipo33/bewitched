@@ -85,6 +85,11 @@ public class BewitchedItems {
         new ItemFood(1, 6.0f, false).setCreativeTab(Bewitched.CREATIVE_TAB)
     );
 
+    // Mob drops
+    public static final ObjectHolder<Item> ENT_TWIG = new ObjectHolder<>(() ->
+        new Item().setCreativeTab(Bewitched.CREATIVE_TAB)
+    );
+
     // Other
     public static final ObjectHolder<Item> MUTANDIS = new ObjectHolder<>(() ->
         new ItemMutandis().setCreativeTab(Bewitched.CREATIVE_TAB)
@@ -120,6 +125,8 @@ public class BewitchedItems {
         registerItem(HAWTHORN_DOOR.get(), "hawthorn_door");
 
         registerItem(ROWAN_BERRIES.get(), "rowan_berries");
+
+        registerItem(ENT_TWIG.get(), "ent_twig");
 
         registerItem(MUTANDIS.get(), "mutandis");
         registerItem(MUTANDIS_EXTREMIS.get(), "mutandis_extremis");

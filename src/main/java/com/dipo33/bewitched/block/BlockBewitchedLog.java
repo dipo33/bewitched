@@ -4,8 +4,10 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
 
+import com.dipo33.bewitched.entity.EntityEnt;
 import com.dipo33.bewitched.items.ItemBewitchedMultiTexture;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -14,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockBewitchedLog extends BlockLog implements ItemBewitchedMultiTexture.VariantBlock {
@@ -58,6 +61,12 @@ public class BlockBewitchedLog extends BlockLog implements ItemBewitchedMultiTex
         for (int i = 0; i < VARIANTS.length; i++) {
             list.add(new ItemStack(item, 1, i));
         }
+    }
+
+    @Override
+    public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
+        super.breakBlock(world, x, y, z, block, meta); // vanilla leaf-decay trigger
+        EntityEnt.trySpawnFromLogBreak(world, x, y, z);
     }
 
     @Override
